@@ -26,6 +26,10 @@ import { TutorialStep } from '~lib/tutorial/types';
 import { WorldMode } from '~scene/world/types';
 
 export class BuildingAmmunition extends Building implements IBuildingAmmunition {
+
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+
   static Category = BuildingCategory.RESOURCES;
 
   static Texture = BuildingTexture.AMMUNITION;

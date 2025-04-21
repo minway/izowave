@@ -12,5 +12,6 @@ export interface IBuildingFactory {
   AllowByWave?: number
   MaxLevel: number
   CityRequired: boolean
+  Deprecated: boolean
   new (scene: IWorld, data: BuildingVariantData): IBuilding
 }

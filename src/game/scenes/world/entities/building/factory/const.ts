@@ -12,6 +12,8 @@ import { BuildingTowerLazer } from '~scene/world/entities/building/variants/towe
 import { BuildingWall } from '~scene/world/entities/building/variants/wall';
 import { BuildingCityCenter } from '~scene/world/entities/building/variants/citycenter';
 import { BuildingFarm } from '~scene/world/entities/building/variants/farm';
+import { BuildingLumberMill } from '~scene/world/entities/building/variants/lumbermill';
+import { BuildingQuarry } from '~scene/world/entities/building/variants/quarry';
 
 export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
   [BuildingVariant.WALL]: BuildingWall,
@@ -25,4 +27,6 @@ export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
   [BuildingVariant.RADAR]: BuildingRadar,
   [BuildingVariant.CITYCENTER]: BuildingCityCenter,
   [BuildingVariant.FARM]: BuildingFarm,
+  [BuildingVariant.QUARRY]: BuildingQuarry,
+  [BuildingVariant.LUMBERMILL]: BuildingLumberMill,
 };

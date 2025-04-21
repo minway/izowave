@@ -35,6 +35,22 @@ export const Builder: React.FC = () => {
       variant,
       category: building.Category,
       number: index + 1,
+      depreciated: building.Deprecated === true, // Ensure boolean comparison
+    }));
+  
+    const filteredBuildings = buildings.filter((building) => !building.depreciated);
+  
+    return Object.values(BuildingCategory).map((type) => ({
+      type,
+      buildings: filteredBuildings.filter((building) => building.category === type),
+    }));
+  }, []);
+/*
+  const categories = useMemo(() => {
+    const buildings = Utils.MapObject(BUILDINGS, (variant, building, index) => ({
+      variant,
+      category: building.Category,
+      number: index + 1,
     }));
 
     return Object.values(BuildingCategory).map((type) => ({
@@ -42,7 +58,7 @@ export const Builder: React.FC = () => {
       buildings: buildings.filter((building) => building.category === type),
     }));
   }, []);
-
+*/
   const showHint = (step: TutorialStep) => {
     switch (step) {
     case TutorialStep.BUILD_GENERATOR: {

@@ -11,6 +11,9 @@ import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 
 export class BuildingRadar extends Building {
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+    
   static Category = BuildingCategory.OTHER;
 
   static Texture = BuildingTexture.RADAR;

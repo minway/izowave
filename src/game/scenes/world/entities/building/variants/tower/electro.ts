@@ -14,6 +14,9 @@ import { EntityType } from '~scene/world/entities/types';
 import { LEVEL_MAP_PERSPECTIVE } from '~scene/world/level/const';
 
 export class BuildingTowerElectro extends BuildingTower {
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+    
   static Category = BuildingCategory.ATTACK;
 
   static Texture = BuildingTexture.TOWER_ELECTRO;

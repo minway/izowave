@@ -54,7 +54,7 @@ Assets.RegisterSprites(BuildingTexture, BUILDING_TILE);
 
 export abstract class Building extends Phaser.GameObjects.Image implements IBuilding, ITile {
   readonly scene: IWorld;
-
+  
   readonly live: ILive;
 
   readonly variant: BuildingVariant;
@@ -64,6 +64,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
   readonly tileType: TileType = TileType.BUILDING;
 
   static CityRequired = true;
+
+  static Deprecated: boolean = false;
 
   private city: City;
 

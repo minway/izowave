@@ -9,6 +9,9 @@ import type { IWorld } from '~scene/world/types';
 import { ShotLazer } from '~scene/world/entities/shot/lazer';
 
 export class BuildingTowerLazer extends BuildingTower {
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+    
   static Category = BuildingCategory.ATTACK;
 
   static Texture = BuildingTexture.TOWER_LAZER;

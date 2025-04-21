@@ -10,13 +10,10 @@ import type { IWorld } from '~scene/world/types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 
-export class BuildingGenerator extends Building {
-  // Depreciated buildings are not available in the game anymore.
-  static Deprecated: boolean = true;
-    
+export class BuildingLumberMill extends Building {
   static Category = BuildingCategory.RESOURCES;
 
-  static Texture = BuildingTexture.GENERATOR;
+  static Texture = BuildingTexture.LUMBERMILL;
 
   static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
 
@@ -27,24 +24,15 @@ export class BuildingGenerator extends Building {
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {
       ...data,
-      variant: BuildingVariant.GENERATOR,
+      variant: BuildingVariant.LUMBERMILL,
       health: DIFFICULTY.BUILDING_GENERATOR_HEALTH,
-      texture: BuildingGenerator.Texture,
+      texture: BuildingLumberMill.Texture,
       delay: {
         default: DIFFICULTY.BUILDING_GENERATOR_DELAY,
         growth: DIFFICULTY.BUILDING_GENERATOR_DELAY_GROWTH,
       },
     });
 
-    if (Tutorial.IsInProgress(TutorialStep.BUILD_GENERATOR)) {
-      Tutorial.Complete(TutorialStep.BUILD_GENERATOR);
-    } else if (
-      Tutorial.IsInProgress(TutorialStep.BUILD_GENERATOR_SECOND)
-      && this.scene.builder.getBuildingsByVariant(BuildingVariant.GENERATOR).length > 0
-    ) {
-      Tutorial.Complete(TutorialStep.BUILD_GENERATOR_SECOND);
-      Tutorial.Start(TutorialStep.UPGRADE_BUILDING);
-    }
   }
 
   public update() {
@@ -66,6 +54,10 @@ export class BuildingGenerator extends Building {
     position.y += (this.upgradeLevel === 1) ? 5 : -4;
 
     return position;
+  }
+
+  public getFoodProduction(): number {
+    return 10;
   }
 
   private generateResource() {

@@ -158,6 +158,9 @@ export class BuildingCityCenter extends BuildingTower {
   public update() {
     super.update();
 
+    console.log(' CityCenter - update');
+    //console.trace("  Trace in myFunction");
+
     try {
       if (this.isActionAllowed()) {
         this.generateResource();
@@ -180,6 +183,7 @@ export class BuildingCityCenter extends BuildingTower {
   }
 
   private generateResource() {
+    
     this.scene.player.giveResources(1);
     this.scene.fx.createGenerationEffect(this);
 

@@ -11,6 +11,9 @@ import type { IWorld } from '~scene/world/types';
 import { ShotBallFrozen } from '~scene/world/entities/shot/ball/variants/frozen';
 
 export class BuildingTowerFrozen extends BuildingTower {
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+    
   static Category = BuildingCategory.DEFENSE;
 
   static Texture = BuildingTexture.TOWER_FROZEN;

@@ -166,6 +166,8 @@ export enum BuildingVariant {
   BOOSTER = 'BOOSTER',
   CITYCENTER = 'CITYCENTER',
   FARM = 'FARM',
+  QUARRY = 'QUARRY',
+  LUMBERMILL = 'LUMBERMILL',
 }
 
 export enum BuildingTexture {
@@ -180,6 +182,8 @@ export enum BuildingTexture {
   BOOSTER = 'building/textures/booster',
   CITYCENTER = 'building/textures/citycenter',
   FARM = 'building/textures/farm',
+  QUARRY = 'building/textures/quarry',
+  LUMBERMILL = 'building/textures/lumbermill',  
 }
 
 export enum BuildingIcon {

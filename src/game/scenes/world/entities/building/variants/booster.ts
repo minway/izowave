@@ -17,6 +17,10 @@ import type { IWorld } from '~scene/world/types';
 import { progressionLinear } from '~lib/progression';
 
 export class BuildingBooster extends Building implements IBuildingBooster {
+
+  // Depreciated buildings are not available in the game anymore.
+  static Deprecated: boolean = true;
+
   static Category = BuildingCategory.OTHER;
 
   static Texture = BuildingTexture.BOOSTER;
