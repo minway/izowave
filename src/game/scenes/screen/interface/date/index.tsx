@@ -23,7 +23,7 @@ import {
   Label,
   Value,
   Placeholder,
-} from './styles';
+} from './styles'; 
 
 export const Date: React.FC = () => {
   const game = useGame<IGame>();

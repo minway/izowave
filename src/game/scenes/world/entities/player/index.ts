@@ -97,6 +97,36 @@ export class Player extends Sprite implements IPlayer {
 
   private set score(v) { this._score = v; }
 
+  private _aether: number = 0;
+
+  public get aether() { return this._aether; }
+
+  private set aether(v) { this._aether = v; }
+
+  private _silver: number = 0;
+
+  public get silver() { return this._silver; }
+
+  private set silver(v) { this._silver = v; }
+
+  private _research: number = 0;
+
+  public get research() { return this._research; }
+
+  private set research(v) { this._research = v; }
+
+  private _lumber: number = 0;
+
+  public get lumber() { return this._lumber; }
+
+  private set lumber(v) { this._lumber = v; }
+
+  private _stone: number = 0;
+
+  public get stone() { return this._stone; }
+
+  private set stone(v) { this._stone = v; }
+
   private _kills: number = 0;
 
   public get kills() { return this._kills; }
@@ -390,6 +420,86 @@ export class Player extends Sprite implements IPlayer {
     }
   }
 
+  public giveAether(amount: number) {
+    if (this.live.isDead()) {
+      return;
+    }
+
+    this.aether += amount;
+
+    this.emit(PlayerEvent.UPDATE_AETHER, this.aether);
+  }
+
+  public takeAether(amount: number) {
+    this.aether -= amount;
+
+    this.emit(PlayerEvent.UPDATE_AETHER, this.aether);
+  }
+
+  public giveSilver(amount: number) {
+    if (this.live.isDead()) {
+      return;
+    }
+
+    this.silver += amount;
+
+    this.emit(PlayerEvent.UPDATE_SILVER, this.silver);
+  }
+
+  public takeSilver(amount: number) {
+    this.silver -= amount;
+
+    this.emit(PlayerEvent.UPDATE_SILVER, this.silver);
+  }
+
+  public giveResearch(amount: number) {
+    if (this.live.isDead()) {
+      return;
+    }
+
+    this.research += amount;
+
+    this.emit(PlayerEvent.UPDATE_RESEARCH, this.research);
+  }
+
+  public takeResearch(amount: number) {
+    this.research -= amount;
+
+    this.emit(PlayerEvent.UPDATE_RESEARCH, this.research);
+  }
+
+  public giveLumber(amount: number) {
+    if (this.live.isDead()) {
+      return;
+    }
+
+    this.lumber += amount;
+
+    this.emit(PlayerEvent.UPDATE_LUMBER, this.lumber);
+  }
+
+  public takeLumber(amount: number) {
+    this.lumber -= amount;
+
+    this.emit(PlayerEvent.UPDATE_LUMBER, this.lumber);
+  }
+
+  public giveStone(amount: number) {
+    if (this.live.isDead()) {
+      return;
+    }
+
+    this.stone += amount;
+
+    this.emit(PlayerEvent.UPDATE_STONE, this.stone);
+  }
+
+  public takeStone(amount: number) {
+    this.stone -= amount;
+
+    this.emit(PlayerEvent.UPDATE_STONE, this.stone);
+  }
+  
   public incrementKills() {
     this.kills++;
   }

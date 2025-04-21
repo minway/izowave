@@ -98,6 +98,11 @@ export const EN = {
   RESOURCES: 'Resources',
   EXPERIENCE: 'Experience',
   SCORE: 'Score',
+  AETHER: 'Aether',
+  RESEARCH: 'Research',
+  SILVER: 'Silver',
+  LUMBER: 'Lumber',
+  STONE: 'Stone',
 
   /**
    * Ads

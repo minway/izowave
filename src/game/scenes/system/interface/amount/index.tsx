@@ -8,7 +8,7 @@ import {
 
 type Props = {
   children: React.ReactNode
-  type: 'RESOURCES' | 'EXPERIENCE' | 'SCORE'
+  type: 'RESOURCES' | 'EXPERIENCE' | 'SCORE' | 'AETHER' | 'RESEARCH' | 'SILVER' | 'LUMBER' | 'STONE'
   placeholder?: boolean
 };
 

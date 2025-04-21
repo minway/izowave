@@ -30,6 +30,36 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   readonly resources: number
 
   /**
+   * Spiritual Power (Aether).
+   * Aether is a resource that is used to cast spells and use abilities.
+   */
+  readonly aether: number
+
+  /**
+   * Silver amount.
+   * Silver is a resource that is used to buy items and upgrades.
+   */
+  readonly silver: number 
+
+  /**
+   * Research points amount.
+   * Research points are used to unlock new technologies and upgrades.
+   */
+  readonly research: number
+
+  /**
+   * Lumber amount.
+   * Lumber is a resource that is used to build structures and units.
+   */
+  readonly lumber: number
+
+  /**
+   * Stone amount.
+   * Stone is a resource that is used to build structures and units.  
+   */
+  readonly stone: number
+
+  /**
    * Health management.
    */
   readonly live: ILive
@@ -101,6 +131,69 @@ export interface IPlayer extends ISprite, IEnemyTarget {
    */
   takeResources(amount: number): void
 
+  /**
+   * Give player aether.
+   * @param amount - Amount
+   */
+  giveAether(amount: number): void
+
+
+  /**
+   * Take player aether.
+   * @param amount - Amount
+   */
+  takeAether(amount: number): void
+
+  /**
+   * Give player silver.
+   * @param amount - Amount
+   */
+
+  giveSilver(amount: number): void
+
+  /**
+   * Take player silver.
+   * @param amount - Amount
+   */
+  takeSilver(amount: number): void
+
+  /**
+   * Give player research points.
+   * @param amount - Amount
+   */
+  giveResearch(amount: number): void
+
+  /**
+   * Take player research points.
+   * @param amount - Amount
+   */
+  takeResearch(amount: number): void
+
+  /**
+   * Give player lumber.
+   * @param amount - Amount
+   */
+  giveLumber(amount: number): void
+
+  /**
+   * Take player lumber.
+   * @param amount - Amount
+   */
+  takeLumber(amount: number): void
+
+  /**
+   * Give player stone.
+   * @param amount - Amount
+   */
+
+  giveStone(amount: number): void
+
+  /**
+   * Take player stone.
+   * @param amount - Amount
+   */
+  takeStone(amount: number): void
+  
   /**
    * Use superskill.
    * @param type - Superskill
@@ -201,6 +294,11 @@ export enum PlayerEvent {
   UPDATE_EXPERIENCE = 'update_experience',
   UPDATE_SCORE = 'update_score',
   UPDATE_RESOURCES = 'update_resources',
+  UPDATE_AETHER = 'update_aether',
+  UPDATE_SILVER = 'update_silver',
+  UPDATE_RESEARCH = 'update_research',
+  UPDATE_LUMBER = 'update_lumber',
+  UPDATE_STONE = 'update_stone',
 }
 
 export enum MovementDirection {

@@ -57,6 +57,7 @@ export class Crystal extends Phaser.GameObjects.Image implements ICrystal, ITile
     const resources = this.getResourcesAmount();
 
     this.scene.player.giveResources(resources);
+    this.scene.player.giveAether(resources);
 
     this.scene.getEntitiesGroup(EntityType.CRYSTAL)
       .emit(CrystalEvents.PICKUP, this, resources);
