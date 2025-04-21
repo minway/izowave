@@ -158,7 +158,7 @@ export class BuildingCityCenter extends BuildingTower {
   public update() {
     super.update();
 
-    console.log(' CityCenter - update');
+    //console.log(' CityCenter - update');
     //console.trace("  Trace in myFunction");
 
     try {
