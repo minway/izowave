@@ -354,6 +354,7 @@ export class World extends Scene implements IWorld {
     );
 
     this.player = new Player(this, { positionAtMatrix, ai: false });
+    console.log('Player position', this.player.positionAtMatrix);
 
     // Add player's nation
     let nation = new Nation(this, this.player, 'Player Nation');
@@ -376,7 +377,7 @@ export class World extends Scene implements IWorld {
       this.player.loadSavePayload(this.game.usedSave.payload.player);
     }
 
-    this.level.clearFog(this.player.positionAtMatrix, 4);
+    //this.level.clearFog(this.player.positionAtMatrix, 4);
     
     this.camera.focusOn(this.player);
 

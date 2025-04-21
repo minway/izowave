@@ -270,7 +270,7 @@ export class Player extends Sprite implements IPlayer {
         this.updateSoldiersText();
       }
 
-      // if this player is the user, clear fog
+      // if this player is the user, clear fog - radius set to 4 at the moment 
       if (!this.ai) {
         this.scene.level.clearFog(this.positionAtMatrix, 4);
       }

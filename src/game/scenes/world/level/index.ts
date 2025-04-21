@@ -330,7 +330,7 @@ export class Level extends TileMatrix implements ILevel {
     this.fogLayer = layer;
     this.fogLayer.setDepth(WORLD_DEPTH_FOG);
 
-    // Set the biome for the fog - defined in the planets/earth.ts 
+    // Set the biome for the fog - use snow defined in the planets/earth.ts 
     const biome = LEVEL_PLANETS[this.planet].BIOMES[11].data;  
 
     const index = Array.isArray(biome.tileIndex)
@@ -355,11 +355,13 @@ export class Level extends TileMatrix implements ILevel {
 
     for (let i = -radiusInTile; i <= radiusInTile; i++) {
       for (let j = -radiusInTile; j <= radiusInTile; j++) {
-        const tile = this.map.getAt({ x: x + i, y: y + j });
+        const tileX = x + i;
+        const tileY = y + j;
+        const tile = this.map.getAt({ x: tileX, y: tileY });
 
-        if (tile && this.checkFogAt(x + i, y + j)) {
-          this.gridFog[y][x] = false;
-          this.fogLayer.putTileAt(-1, x + i, y + j, false);
+        if (tile && this.checkFogAt(tileX, tileY)) {
+          this.gridFog[tileY][tileX] = false;
+          this.fogLayer.putTileAt(-1, tileX, tileY, false);
         }
       }
     }
