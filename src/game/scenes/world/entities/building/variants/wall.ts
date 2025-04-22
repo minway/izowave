@@ -18,7 +18,7 @@ export class BuildingWall extends Building {
 
   static MaxLevel = 3;
 
-  static CityRequired = false;
+  static CityRequired = true;
 
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {

@@ -1,4 +1,4 @@
-import type { TilePosition, TileType } from '../types';
+import type { ResourceType, TilePosition, TileType } from '../types';
 import type Phaser from 'phaser';
 
 export interface ITileMatrix {
@@ -61,5 +61,6 @@ export interface ITileMatrix {
 
 export interface ITile extends Phaser.GameObjects.Image {
   tileType: TileType
+  resourceType: ResourceType
   clearable?: boolean
 }

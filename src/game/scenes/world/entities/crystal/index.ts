@@ -10,7 +10,7 @@ import {
 
 import type { ICrystal, CrystalData, CrystalSavePayload } from './types';
 import type { ITile } from '~scene/world/level/tile-matrix/types';
-import type { PositionAtMatrix } from '~scene/world/level/types';
+import type { PositionAtMatrix, ResourceType } from '~scene/world/level/types';
 import type { IWorld } from '~scene/world/types';
 
 import { Assets } from '~lib/assets';
@@ -26,6 +26,8 @@ export class Crystal extends Phaser.GameObjects.Image implements ICrystal, ITile
   readonly scene: IWorld;
 
   readonly tileType: TileType = TileType.CRYSTAL;
+
+  readonly resourceType: ResourceType;
 
   readonly positionAtMatrix: PositionAtMatrix;
 

@@ -88,6 +88,13 @@ export enum TileType {
   SCENERY = 'SCENERY',
 }
 
+export enum ResourceType {
+  NONE = 'NONE',
+  FOREST = 'FOREST',
+  STONE = 'STONE',
+  // later: iron, water, etc.
+}
+
 export enum SpawnTarget {
   ENEMY = 'ENEMY',
   PLAYER = 'PLAYER',
@@ -136,6 +143,11 @@ export enum LevelSceneryTexture {
   TAIWAN = 'level/earth/scenery',
   JAPAN = 'level/earth/scenery',
   BRITAIN = 'level/earth/scenery',
+}
+
+export enum LevelResourceTexture {
+  FOREST = 'level/earth/forest',
+  STONE = 'level/earth/stone',
 }
 
 export enum LevelTilesetTexture {

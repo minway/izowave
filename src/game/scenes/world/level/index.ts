@@ -17,7 +17,9 @@ import { TileMatrix } from './tile-matrix';
 import {
   LevelPlanet,
   LevelSceneryTexture,
+  LevelResourceTexture,
   LevelTilesetTexture,
+  ResourceType,
   SpawnTarget,
   TileType,
 } from './types';
@@ -48,6 +50,7 @@ import britainMap from './realmaps/britain.json';
 
 Assets.RegisterSprites(LevelTilesetTexture, LEVEL_MAP_TILE);
 Assets.RegisterSprites(LevelSceneryTexture, LEVEL_SCENERY_TILE);
+Assets.RegisterSprites(LevelResourceTexture, LEVEL_SCENERY_TILE);
 
 export class Level extends TileMatrix implements ILevel {
   readonly scene: IWorld;
@@ -67,6 +70,8 @@ export class Level extends TileMatrix implements ILevel {
   private mapWidth: number;
 
   private mapHeight: number;
+
+  private mapData: any;
 
   public get effectsOnGround() { return this._effectsOnGround; }
 
@@ -95,24 +100,24 @@ export class Level extends TileMatrix implements ILevel {
     this.planet = planet ?? LevelPlanet.EARTH;
 
     // Load the map data from JSON file
-    let mapData: any = twMap;
+    this.mapData = twMap;
     let newScenario = false;
 
     if (planet === LevelPlanet.TAIWAN) {
-      mapData = twMap;
+      this.mapData = twMap;
       newScenario = true;
     } else if (planet === LevelPlanet.JAPAN) {
-      mapData = japanMap;
+      this.mapData = japanMap;
       newScenario = true;
     } else if (planet === LevelPlanet.BRITAIN) {
-      mapData = britainMap;
+      this.mapData = britainMap;
       newScenario = true;
     }    
     
     if (newScenario) {    
       // Map width and height from JSON
-      this.mapWidth = mapData.width;
-      this.mapHeight = mapData.height;
+      this.mapWidth = this.mapData.width;
+      this.mapHeight = this.mapData.height;
       console.log("mapWidth: ", this.mapWidth, "mapHeight: ", this.mapHeight);
     } else {
       this.mapWidth = LEVEL_MAP_SIZE;
@@ -148,7 +153,7 @@ export class Level extends TileMatrix implements ILevel {
       for (let y = 0; y < this.mapHeight; y++) {
         for (let x = 0; x < this.mapWidth; x++) {        
           // Find the corresponding tile object from JSON
-          const tile = mapData.layers[0].objects.find((obj: any) => obj.x / 32 === x && obj.y / 32 === y);
+          const tile = this.mapData.layers[0].objects.find((obj: any) => obj.x / 32 === x && obj.y / 32 === y);
 
           if (tile) {
             // Set biome based on terrain type
@@ -465,8 +470,82 @@ export class Level extends TileMatrix implements ILevel {
     tile.setOrigin(0.5, LEVEL_MAP_TILE.origin);
     this.putTile(tile, { ...position, z }, false);
   }
+  
 
   private addScenery() {
+    this.sceneryTiles = this.scene.add.group();
+
+    const positions = this.readSpawnPositions(SpawnTarget.SCENERY);
+
+    // Iterate over each tile in the JSON map and update the biome
+    for (let y = 0; y < this.mapHeight; y++) {
+      for (let x = 0; x < this.mapWidth; x++) {       
+      
+      const tilePosition: TilePosition = {x, y, z: 1};
+      
+      if (this.isFreePoint(tilePosition)) {
+      
+//        const terrain = this.mapData.layers[0].objects.find((obj: any) => obj.x / 32 === x && obj.y / 32 === y);
+        const terrain = this.mapData.layers[0].objects.find((obj: any) => {
+          return Math.floor(obj.x / 32) === x && Math.floor(obj.y / 32) === y;
+        });
+        
+
+        let resourceType = ResourceType.NONE;
+        const r = Math.random();
+
+        if (terrain) {          
+          if (terrain.type === "plain") {
+            // 20% chance for forest
+            if (r < 0.20) {
+              resourceType = ResourceType.FOREST;
+            }
+          } else if (terrain.type === "hill") {
+            // 5% chance for stone, 50% for forest            
+            if (r < 0.02) {
+              resourceType = ResourceType.STONE;
+            } else if (r < 0.6) { // 0.1 to 0.6 = 50% for forest
+              resourceType = ResourceType.FOREST;
+            }
+          } else if (terrain.type === "mountain") {
+            // 20% chance for stone, 70% for forest            
+            if (r < 0.1) {
+              resourceType = ResourceType.STONE;
+            } else if (r < 0.9) { // 0.1 to 0.6 = 50% for forest
+              resourceType = ResourceType.FOREST;
+            }
+          }
+        }
+
+        if (resourceType === ResourceType.NONE) {        
+          continue;
+        }
+        
+        const positionAtMatrix = { x, y, z: 1 };
+        const positionAtWorld = Level.ToWorldPosition(positionAtMatrix);
+        const tile = this.scene.add.image(
+          positionAtWorld.x,
+          positionAtWorld.y,
+          LevelResourceTexture[resourceType],
+          0,
+        ) as ITile;
+
+        tile.tileType = TileType.SCENERY;
+        tile.resourceType = resourceType;
+        tile.clearable = true;
+
+        tile.setDepth(positionAtWorld.y);
+        tile.setOrigin(0.5, LEVEL_SCENERY_TILE.origin);
+        this.putTile(tile, tilePosition);
+        this.sceneryTiles.add(tile);
+        //console.log(`  Placed ${resourceType} at ${x}, ${y} (${terrain?.type})`);
+
+      }
+    }
+    }
+  }
+
+  private addScenery1() {
     this.sceneryTiles = this.scene.add.group();
 
     const positions = this.readSpawnPositions(SpawnTarget.SCENERY);
@@ -487,6 +566,7 @@ export class Level extends TileMatrix implements ILevel {
         ) as ITile;
 
         tile.tileType = TileType.SCENERY;
+        tile.resourceType = ResourceType.FOREST;
         tile.clearable = true;
 
         tile.setDepth(positionAtWorld.y);
