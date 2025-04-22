@@ -59,6 +59,8 @@ export class Level extends TileMatrix implements ILevel {
 
   readonly map: World<LevelBiome>;
 
+  readonly resourceMap: ResourceType[][] = [];
+
   readonly planet: LevelPlanet;
 
   readonly gridCollide: boolean[][] = [];
@@ -137,6 +139,7 @@ export class Level extends TileMatrix implements ILevel {
       }
     });
 
+    // This map contains the terain type (water, deepwater, plain, hill, mountain) - using the name of the biome at the moment
     this.map = generator.generate({
       seed,
       seedSize: LEVEL_SEED_SIZE,
@@ -153,19 +156,21 @@ export class Level extends TileMatrix implements ILevel {
       for (let y = 0; y < this.mapHeight; y++) {
         for (let x = 0; x < this.mapWidth; x++) {        
           // Find the corresponding tile object from JSON
-          const tile = this.mapData.layers[0].objects.find((obj: any) => obj.x / 32 === x && obj.y / 32 === y);
+          const terrain = this.mapData.layers[0].objects.find((obj: any) => {
+            return Math.floor(obj.x / 32) === x && Math.floor(obj.y / 32) === y;
+          });        
 
-          if (tile) {
+          if (terrain) {
             // Set biome based on terrain type
-            if (tile.type === "water") {
+            if (terrain.type === "water") {
               this.map.replaceAt({ x, y }, water);
-            } else if (tile.type === "deepwater") {
+            } else if (terrain.type === "deepwater") {
               this.map.replaceAt({ x, y }, deepwater);
-            } else if (tile.type === "plain") {
+            } else if (terrain.type === "plain") {
               this.map.replaceAt({ x, y }, plain);
-            } else if (tile.type === "hill") {
+            } else if (terrain.type === "hill") {
               this.map.replaceAt({ x, y }, hill);
-            } else if (tile.type === "mountain") {
+            } else if (terrain.type === "mountain") {
               this.map.replaceAt({ x, y }, mountain);
             }
           }
@@ -173,6 +178,10 @@ export class Level extends TileMatrix implements ILevel {
       }
     }
 
+    this.resourceMap = Array.from({ length: this.mapHeight }, () =>
+      Array(this.mapWidth).fill(ResourceType.NONE)
+    );
+    
     this.gridCollide = this.map.getMatrix().map((y) => y.map((x) => x.collide));
     this.gridSolid = this.map.getMatrix().map((y) => y.map((x) => !x.solid));
     this.gridFog = this.map.getMatrix().map((y) => y.map((x) => true));
@@ -473,23 +482,21 @@ export class Level extends TileMatrix implements ILevel {
   
 
   private addScenery() {
+    
     this.sceneryTiles = this.scene.add.group();
 
     const positions = this.readSpawnPositions(SpawnTarget.SCENERY);
 
-    // Iterate over each tile in the JSON map and update the biome
+    // Iterate over each tile in the JSON map and update the resource type
     for (let y = 0; y < this.mapHeight; y++) {
       for (let x = 0; x < this.mapWidth; x++) {       
       
       const tilePosition: TilePosition = {x, y, z: 1};
       
-      if (this.isFreePoint(tilePosition)) {
-      
-//        const terrain = this.mapData.layers[0].objects.find((obj: any) => obj.x / 32 === x && obj.y / 32 === y);
+      if (this.isFreePoint(tilePosition)) {      
         const terrain = this.mapData.layers[0].objects.find((obj: any) => {
           return Math.floor(obj.x / 32) === x && Math.floor(obj.y / 32) === y;
-        });
-        
+        });        
 
         let resourceType = ResourceType.NONE;
         const r = Math.random();
@@ -521,6 +528,8 @@ export class Level extends TileMatrix implements ILevel {
           continue;
         }
         
+        this.resourceMap[y][x] = resourceType;
+
         const positionAtMatrix = { x, y, z: 1 };
         const positionAtWorld = Level.ToWorldPosition(positionAtMatrix);
         const tile = this.scene.add.image(

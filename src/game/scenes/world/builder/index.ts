@@ -32,6 +32,7 @@ import { TutorialStep } from '~lib/tutorial/types';
 import { Utils } from '~lib/utils';
 import { IPlayer } from '../entities/player/types';
 import { City } from '~scene/world/nation/city';
+import { Building } from '~scene/screen/interface/builder/building';
 
 export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
   readonly scene: IWorld;
@@ -313,6 +314,12 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
       !this.player.getNation().isPosContainedByCity(positionAtMatrix)) {
       return false;
     }        
+
+    // Check the tile has the resource required for the building 
+    const type = this.scene.level.resourceMap[positionAtMatrix.y][positionAtMatrix.x];
+    if (BuildingInstance.ResourceRequired !== type) {
+      return false;
+    }
 
     // No need to - Check if the tile is at z = 0, and empty at z = 1 
     //const isFreeFromTile = this.scene.level.isFreePoint({ ...positionAtMatrix, z: 1 });

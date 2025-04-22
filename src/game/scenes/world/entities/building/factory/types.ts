@@ -1,3 +1,4 @@
+import { ResourceType } from '~scene/world/level/types';
 import type {
   BuildingCategory, BuildingTexture, BuildingVariantData, IBuilding,
 } from '../types';
@@ -12,6 +13,7 @@ export interface IBuildingFactory {
   AllowByWave?: number
   MaxLevel: number
   CityRequired: boolean
+  ResourceRequired: ResourceType
   Deprecated: boolean
   new (scene: IWorld, data: BuildingVariantData): IBuilding
 }

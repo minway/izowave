@@ -17,6 +17,9 @@ export interface ILevel extends ITileMatrix {
    */
   readonly map: World<LevelBiome>
 
+
+  readonly resourceMap: ResourceType[][]
+  
   /**
    * Planet type.
    */

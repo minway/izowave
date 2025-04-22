@@ -6,6 +6,7 @@ import {
 
 import type { BuildingVariantData } from '../types';
 import type { IWorld } from '~scene/world/types';
+import { ResourceType } from '~scene/world/level/types';
 
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
@@ -20,6 +21,8 @@ export class BuildingQuarry extends Building {
   static Limit = true;
 
   static MaxLevel = 4;
+
+  static ResourceRequired = ResourceType.STONE;
 
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {

@@ -30,9 +30,9 @@ import type { IIndicator, IndicatorData } from '../addons/indicator/types';
 import type { ILive } from '../addons/live/types';
 import type { LangPhrase } from '~lib/lang/types';
 import type { ITile } from '~scene/world/level/tile-matrix/types';
-import type { PositionAtMatrix, PositionAtWorld, ResourceType } from '~scene/world/level/types';
+import type { PositionAtMatrix, PositionAtWorld } from '~scene/world/level/types';
+import { ResourceType } from '~scene/world/level/types';
 import type { IWorld } from '~scene/world/types';
-
 import { Assets } from '~lib/assets';
 import { CONTROL_KEY } from '~lib/controls/const';
 import { progressionLinear, progressionQuadratic } from '~lib/progression';
@@ -66,6 +66,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
   readonly resourceType: ResourceType;
 
   static CityRequired = true;
+
+  static ResourceRequired: ResourceType = ResourceType.NONE;
 
   static Deprecated: boolean = false;
 
