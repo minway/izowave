@@ -10,7 +10,7 @@ import { PlayerSkill } from '../entities/player/types';
 import { EntityType } from '../entities/types';
 import { Level } from '../level';
 import { LEVEL_MAP_PERSPECTIVE, LEVEL_MAP_TILE } from '../level/const';
-import { BiomeType, TileType,
+import { BiomeType, ResourceType, TileType,
 } from '../level/types';
 
 import { BuilderEvent } from './types';
@@ -317,8 +317,10 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
 
     // Check the tile has the resource required for the building 
     const type = this.scene.level.resourceMap[positionAtMatrix.y][positionAtMatrix.x];
-    if (BuildingInstance.ResourceRequired !== type) {
-      return false;
+    if (BuildingInstance.ResourceRequired !== ResourceType.NONE) {
+      if (BuildingInstance.ResourceRequired !== type) {
+        return false;
+      }
     }
 
     // No need to - Check if the tile is at z = 0, and empty at z = 1 
