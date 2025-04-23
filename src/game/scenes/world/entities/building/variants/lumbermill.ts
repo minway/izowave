@@ -7,7 +7,7 @@ import {
 import type { BuildingVariantData } from '../types';
 import type { IWorld } from '~scene/world/types';
 import { ResourceType } from '~scene/world/level/types';
-
+import { BuildingIcon, BuildingParam } from '../types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 
@@ -38,6 +38,16 @@ export class BuildingLumberMill extends Building {
 
   }
 
+  public getInfo() {
+    const info: BuildingParam[] = [{
+      label: 'BUILDING_PRODUCTION',
+      icon: BuildingIcon.POWER,
+      value: `+${this.getProduction()}`,      
+    }];
+
+    return info.concat(super.getInfo());
+  }
+
   public update() {
     super.update();
 
@@ -59,8 +69,8 @@ export class BuildingLumberMill extends Building {
     return position;
   }
 
-  public getFoodProduction(): number {
-    return 10;
+  public getProduction(): number {
+    return 1;
   }
 
   private generateResource() {

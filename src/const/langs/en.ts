@@ -50,6 +50,8 @@ export const EN = {
   BUILDING_SPEED: 'Speed',
   BUILDING_DELAY: 'Delay',
   BUILDING_POPULATION: 'Population',
+  BUILDING_POPULATION_MAX: 'Population Max',
+  BUILDING_PRODUCTION: 'Production',
   BUILDING_UPGRADE: 'Upgrade',
   BUILDING_BUY_AMMO: 'Buy ammo',
   BUILDING_REPAIR: 'Repair',

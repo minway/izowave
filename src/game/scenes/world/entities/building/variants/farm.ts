@@ -7,6 +7,7 @@ import {
 import type { BuildingVariantData } from '../types';
 import type { IWorld } from '~scene/world/types';
 
+import { BuildingIcon, BuildingParam } from '../types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 import { TerrainType } from '~scene/world/level/types';
@@ -45,6 +46,16 @@ export class BuildingFarm extends Building {
     }
   }
 
+  public getInfo() {
+    const info: BuildingParam[] = [{
+      label: 'BUILDING_POPULATION_MAX',
+      icon: BuildingIcon.POWER,
+      value: `+${this.getFoodProduction()}`,      
+    }];
+
+    return info.concat(super.getInfo());
+  }
+    
   public update() {
     super.update();
 
@@ -68,7 +79,7 @@ export class BuildingFarm extends Building {
 
   public getFoodProduction(): number {
     const terrain = this.scene.level.terrainMap[this.positionAtMatrix.y][this.positionAtMatrix.x]; 
-    
+
     if (terrain === TerrainType.PLAIN) {
       return 8;
     } else if (terrain === TerrainType.HILL) {
