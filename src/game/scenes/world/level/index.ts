@@ -19,6 +19,7 @@ import {
   LevelSceneryTexture,
   LevelResourceTexture,
   LevelTilesetTexture,
+  TerrainType,
   ResourceType,
   SpawnTarget,
   TileType,
@@ -58,6 +59,8 @@ export class Level extends TileMatrix implements ILevel {
   readonly navigator: INavigator;
 
   readonly map: World<LevelBiome>;
+
+  readonly terrainMap: TerrainType[][] = [];
 
   readonly resourceMap: ResourceType[][] = [];
 
@@ -145,6 +148,10 @@ export class Level extends TileMatrix implements ILevel {
       seedSize: LEVEL_SEED_SIZE,
     });
 
+    this.terrainMap = Array.from({ length: this.mapHeight }, () =>
+      Array(this.mapWidth).fill(TerrainType.DEEPWATER)
+    );
+
     if (newScenario) {
       const plain = LEVEL_PLANETS[this.planet].BIOMES[7].data;  
       const hill = LEVEL_PLANETS[this.planet].BIOMES[5].data;  
@@ -163,21 +170,25 @@ export class Level extends TileMatrix implements ILevel {
           if (terrain) {
             // Set biome based on terrain type
             if (terrain.type === "water") {
+              this.terrainMap[y][x] = TerrainType.WATER;
               this.map.replaceAt({ x, y }, water);
             } else if (terrain.type === "deepwater") {
               this.map.replaceAt({ x, y }, deepwater);
             } else if (terrain.type === "plain") {
+              this.terrainMap[y][x] = TerrainType.PLAIN;
               this.map.replaceAt({ x, y }, plain);
             } else if (terrain.type === "hill") {
+              this.terrainMap[y][x] = TerrainType.HILL;
               this.map.replaceAt({ x, y }, hill);
             } else if (terrain.type === "mountain") {
+              this.terrainMap[y][x] = TerrainType.MOUNTAIN;
               this.map.replaceAt({ x, y }, mountain);
             }
           }
         }
       }
     }
-
+        
     this.resourceMap = Array.from({ length: this.mapHeight }, () =>
       Array(this.mapWidth).fill(ResourceType.NONE)
     );

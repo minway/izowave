@@ -19,7 +19,7 @@ export interface ILevel extends ITileMatrix {
 
 
   readonly resourceMap: ResourceType[][]
-  
+
   /**
    * Planet type.
    */
@@ -89,6 +89,14 @@ export enum TileType {
   BUILDING = 'BUILDING',
   CRYSTAL = 'CRYSTAL',
   SCENERY = 'SCENERY',
+}
+
+export enum TerrainType {
+  DEEPWATER = 'DEEPWATER',
+  WATER = 'WATER',
+  PLAIN = 'PLAIN',
+  HILL = 'HILL',
+  MOUNTAIN = 'MOUNTAIN',
 }
 
 export enum ResourceType {
