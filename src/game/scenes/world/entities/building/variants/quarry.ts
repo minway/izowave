@@ -65,6 +65,7 @@ export class BuildingQuarry extends Building {
 
   private generateResource() {
     this.scene.player.giveResources(1);
+    this.scene.player.giveStone(1);
     this.scene.fx.createGenerationEffect(this);
   }
 }

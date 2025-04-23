@@ -32,8 +32,13 @@ export class City {
 
     // Population growth
     public growPopulation() {
+        // birth rate is 1% of the population per tick
         if (this._population < this.getMaxPopulation()) {
-            this._population++;
+            if (this._population < 100) {
+                this._population += 1;
+            } else {
+                this._population += Math.floor(this._population / 100);
+            }
         }        
     }
 

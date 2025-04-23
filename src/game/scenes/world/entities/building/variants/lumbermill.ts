@@ -65,6 +65,7 @@ export class BuildingLumberMill extends Building {
 
   private generateResource() {
     this.scene.player.giveResources(1);
+    this.scene.player.giveLumber(1); 
     this.scene.fx.createGenerationEffect(this);
   }
 }

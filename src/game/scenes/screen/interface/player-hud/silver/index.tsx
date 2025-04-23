@@ -17,5 +17,5 @@ export const Silver: React.FC = () => {
     setAmount(silver);
   }, []);
 
-  return <Amount type="SILVER" placeholder={true}>{amount}</Amount>;
+  return <Amount type="SILVER" placeholder={true}>{Math.floor(amount)}</Amount>;
 };

@@ -185,6 +185,8 @@ export class BuildingCityCenter extends BuildingTower {
   private generateResource() {
     
     this.scene.player.giveResources(1);
+    // head tax 10% of the population
+    this.scene.player.giveSilver(this.getCity().getPopulation() / 10);
     this.scene.fx.createGenerationEffect(this);
 
     this.getCity().growPopulation();
