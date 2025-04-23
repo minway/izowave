@@ -17,6 +17,7 @@ export interface ILevel extends ITileMatrix {
    */
   readonly map: World<LevelBiome>
 
+  readonly terrainMap: TerrainType[][]
 
   readonly resourceMap: ResourceType[][]
 

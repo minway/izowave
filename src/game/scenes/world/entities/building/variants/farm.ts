@@ -9,6 +9,7 @@ import type { IWorld } from '~scene/world/types';
 
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
+import { TerrainType } from '~scene/world/level/types';
 
 export class BuildingFarm extends Building {
   static Category = BuildingCategory.RESOURCES;
@@ -66,7 +67,17 @@ export class BuildingFarm extends Building {
   }
 
   public getFoodProduction(): number {
-    return 10;
+    const terrain = this.scene.level.terrainMap[this.positionAtMatrix.y][this.positionAtMatrix.x]; 
+    
+    if (terrain === TerrainType.PLAIN) {
+      return 8;
+    } else if (terrain === TerrainType.HILL) {
+      return 4;
+    } else if (terrain === TerrainType.MOUNTAIN) {
+      return 2;
+    }
+
+    return 0;
   }
 
   private generateResource() {
