@@ -12,6 +12,7 @@ export const PLAYER_TILE_SIZE = {
   gamut: 4,
 };
 
+// Use skill to present the technology level of the player
 export const PLAYER_MAX_SKILL_LEVEL = 10;
 
 export const PLAYER_SKILLS: Record<PlayerSkill, PlayerSkillInfo> = {

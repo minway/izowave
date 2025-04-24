@@ -247,6 +247,14 @@ export class Player extends Sprite implements IPlayer {
     });
 
     this.scene.wave.on(WaveEvent.COMPLETE, this.onWaveComplete.bind(this));
+
+    // Unlock all superskills at the start 
+    this.unlockSuperskill();
+    this.unlockSuperskill();
+    this.unlockSuperskill();
+    this.unlockSuperskill();
+    this.unlockSuperskill();
+    this.unlockSuperskill();
   } 
 
   public update() {
