@@ -17,6 +17,13 @@ export const DIFFICULTY = {
   PLAYER_EXPERIENCE_TO_UPGRADE_GROWTH: 1.0, // Growth experience need to upgrade (Quadratic)
 
   /**
+   * Technology
+   */
+
+  TECHNOLOGY_UPGRADE_COST: 20, // Building cost
+  TECHNOLOGY_UPGRADE_COST_GROWTH: 0.5, // Growth cost by level (Linear)
+  
+  /**
    * Assistant
    */
 

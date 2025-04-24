@@ -16,6 +16,7 @@ import { INTERFACE_SCALE } from '~lib/interface/const';
 import { Section } from '~scene/system/interface/section';
 
 import { Column, Grid, Wrapper } from './styles';
+import { Technology } from './technology';
 
 export const ScreenUI: React.FC = () => {
   const refScale = useRelativeScale<HTMLDivElement>(INTERFACE_SCALE);
@@ -33,6 +34,7 @@ export const ScreenUI: React.FC = () => {
               <Date />
               <Modes />
               <Skills />
+              <Technology />
             </Section>
             <Notices />
           </Section>

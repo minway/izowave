@@ -70,6 +70,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   readonly upgradeLevel: Record<PlayerSkill, number>
 
   /**
+   * Levels of technologies.
+   */
+  readonly techLevel: Record<PlayerTechnology, number>
+
+  /**
    * Unlocked superskills.
    */
   readonly unlockedSuperskills: Partial<Record<PlayerSuperskill, boolean>>
@@ -101,6 +106,16 @@ export interface IPlayer extends ISprite, IEnemyTarget {
    * Get experience amount need to upgrade.
    */
   getExperienceToUpgrade(type: PlayerSkill): number
+
+  /**
+   * Advance player technology.
+   */
+  advance(type: PlayerTechnology): void
+
+  /**
+   * Get research amount need to advance.
+   */
+  getResearchToAdvance(type: PlayerTechnology): number
 
   /**
    * Inremeting number of killed enemies.
@@ -278,6 +293,32 @@ export enum PlayerSkill {
   ATTACK_SPEED = 'ATTACK_SPEED',
 }
 
+export enum PlayerTechnologyGroup {
+  BUILDING = 'BUILDING',
+  MILITARY = 'MILITARY',
+}
+
+export enum PlayerTechnology {
+  CITYCENTER = 'CITYCENTER',
+  FARM = 'FARM',
+  LUMBERMILL = 'LUMBERMILL',
+  QUARRY = 'QUARRY',
+  FIRE_TOWER = 'FIRE_TOWER',
+  WALL = 'WALL',
+  COMBAT = 'COMBAT',
+}
+
+export enum PlayerTechnologyIcon {
+  CITYCENTER = 'player/technologies/citycenter',
+  FARM = 'player/technologies/farm',
+  LUMBERMILL = 'player/technologies/lumbermill',
+  QUARRY = 'player/technologies/quarry',
+  FIRE_TOWER = 'player/technologies/fire_tower',
+  WALL = 'player/technologies/wall',
+  COMBAT = 'player/technologies/combat',
+} 
+
+
 export enum PlayerSuperskill {
   HIRE = 'HIRE',
   SHIELD = 'SHIELD',
@@ -291,6 +332,7 @@ export enum PlayerEvent {
   USE_SUPERSKILL = 'use_superskill',
   UNLOCK_SUPERSKILL = 'unlock_superskill',
   UPGRADE_SKILL = 'upgrade_skill',
+  ADVANCE_TECHNOLOGY = 'advance_technology',
   UPDATE_EXPERIENCE = 'update_experience',
   UPDATE_SCORE = 'update_score',
   UPDATE_RESOURCES = 'update_resources',
@@ -321,6 +363,17 @@ export type PlayerSkillInfo = {
 export type PlayerSkillData = {
   experience: number
   type: PlayerSkill
+  currentLevel: number
+};
+
+export type PlayerTechnologyInfo = {
+  research: number
+  group: PlayerTechnologyGroup
+};
+
+export type PlayerTechnologyData = {
+  research: number
+  type: PlayerTechnology
   currentLevel: number
 };
 

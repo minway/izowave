@@ -63,6 +63,12 @@ export const EN = {
    */
   NOT_ENOUGH_RESOURCES: 'Not enough resources',
   NOT_ENOUGH_EXPERIENCE: 'Not enough experience',
+  NOT_ENOUGH_AETHER: 'Not enough aether',
+  NOT_ENOUGH_SILVER: 'Not enough silver',
+  NOT_ENOUGH_LUMBER: 'Not enough lumber',
+  NOT_ENOUGH_STONE: 'Not enough stone',
+  NOT_ENOUGH_RESEARCH: 'Not enough research',
+
   
   NEDD_WITHIN_CITY: 'Need to be inside a city',
   NEED_POPULATION_TO_HIRE: 'Need 10 population to support one solider',
@@ -98,6 +104,25 @@ export const EN = {
   SKILL_LABEL_ATTACK_DISTANCE: 'Attack distance',
   SKILL_LABEL_ATTACK_SPEED: 'Attack speed',
 
+  /**
+   * Technology
+   */
+  TECHNOLOGY: 'Technology',
+  TECHNOLOGY_CLOSE: 'Close',
+  TECHNOLOGY_GROUP_BUILDING: 'Building',
+  TECHNOLOGY_GROUP_MILITARY: 'Military',
+  TECHNOLOGY_ADVANCE: 'Advance',
+  TECHNOLOGY_MAX_LEVEL: 'Max\nlevel',
+  TECHNOLOGY_LABEL_CITYCENTER: 'City center',
+  TECHNOLOGY_LABEL_FARM: 'Farm',
+  TECHNOLOGY_LABEL_LUMBERMILL: 'Lumber mill',
+  TECHNOLOGY_LABEL_QUARRY: 'Quarry',
+  TECHNOLOGY_LABEL_FIRE_TOWER: 'Fire tower',
+  TECHNOLOGY_LABEL_WALL: 'Wall',
+  TECHNOLOGY_LABEL_COMBAT: 'Combat',
+
+
+    
   /**
    * Amounts
    */

@@ -10,6 +10,7 @@ import { EntityType } from '../types';
 import {
   PLAYER_TILE_SIZE,
   PLAYER_SKILLS,
+  PLAYER_TECHNOLOGY,
   PLAYER_MOVEMENT_KEYS,
   PLAYER_MAX_SKILL_LEVEL,
 } from './const';
@@ -22,6 +23,7 @@ import {
   PlayerEvent,
   PlayerSkillIcon,
   PlayerSuperskillIcon,
+  PlayerTechnology,
 } from './types';
 
 import type {
@@ -152,6 +154,20 @@ export class Player extends Sprite implements IPlayer {
   public get upgradeLevel() { return this._upgradeLevel; }
 
   private set upgradeLevel(v) { this._upgradeLevel = v; }
+
+  private _techLevel: Record<PlayerTechnology, number> = {
+    [PlayerTechnology.CITYCENTER]: 1,
+    [PlayerTechnology.FARM]: 1,
+    [PlayerTechnology.LUMBERMILL]: 1,
+    [PlayerTechnology.QUARRY]: 1,
+    [PlayerTechnology.FIRE_TOWER]: 1,
+    [PlayerTechnology.WALL]: 1,
+    [PlayerTechnology.COMBAT]: 1,
+  };
+
+  public get techLevel() { return this._techLevel; }
+
+  private set techLevel(v) { this._techLevel = v; }
 
   private movementTarget: Nullable<number> = null;
 
@@ -685,6 +701,43 @@ export class Player extends Sprite implements IPlayer {
     }
 
     this.upgradeLevel[type] = level;
+  }
+
+  public advance(type: PlayerTechnology) {
+    if (this.techLevel[type] === PLAYER_MAX_SKILL_LEVEL) {
+      return;
+    }
+
+    const research = this.getResearchToAdvance(type);
+
+    if (this.research < research) {
+      this.scene.game.screen.failure('NOT_ENOUGH_RESEARCH');
+
+      return;
+    }
+
+    // Add this function later - to apply technology advance 
+    this.setTechnologyAdvance(type, this.techLevel[type] + 1);
+    this.takeResearch(research);
+
+    this.emit(PlayerEvent.ADVANCE_TECHNOLOGY, type);
+
+    this.scene.fx.playSound(PlayerAudio.UPGRADE);
+  }
+  
+  public getResearchToAdvance(type: PlayerTechnology) {
+    return progressionQuadratic({
+      defaultValue: PLAYER_TECHNOLOGY[type].research,
+      scale: DIFFICULTY.PLAYER_EXPERIENCE_TO_UPGRADE_GROWTH,
+      level: this.techLevel[type],
+      roundTo: 10,
+    });
+
+    return 1;
+  }
+
+  private setTechnologyAdvance(type: PlayerTechnology, level: number) {
+    this.techLevel[type] = level;
   }
 
   protected onDamage(amount: number) {

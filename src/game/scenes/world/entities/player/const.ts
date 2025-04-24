@@ -2,9 +2,10 @@ import { DIFFICULTY } from '../../../../../const/difficulty';
 
 import {
   PlayerSkill, PlayerSkillTarget, MovementDirection,
+  PlayerTechnologyGroup,
 } from './types';
 
-import type { PlayerSkillInfo } from './types';
+import { PlayerSkillInfo, PlayerTechnology, PlayerTechnologyInfo } from './types';
 
 export const PLAYER_TILE_SIZE = {
   width: 20,
@@ -12,7 +13,6 @@ export const PLAYER_TILE_SIZE = {
   gamut: 4,
 };
 
-// Use skill to present the technology level of the player
 export const PLAYER_MAX_SKILL_LEVEL = 10;
 
 export const PLAYER_SKILLS: Record<PlayerSkill, PlayerSkillInfo> = {
@@ -45,6 +45,43 @@ export const PLAYER_SKILLS: Record<PlayerSkill, PlayerSkillInfo> = {
     target: PlayerSkillTarget.ASSISTANT,
   },
 };
+
+export const PLAYER_MAX_TECHNOLOGY_LEVEL = 10;
+
+export const PLAYER_TECHNOLOGY: Record<PlayerTechnology, PlayerTechnologyInfo> = {
+  [PlayerTechnology.CITYCENTER]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.FARM]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.LUMBERMILL]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.QUARRY]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.FIRE_TOWER]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.WALL]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.BUILDING,
+  },
+  [PlayerTechnology.COMBAT]: {
+    research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
+    group: PlayerTechnologyGroup.MILITARY,
+  },
+};
+
+
+
+
 
 export const PLAYER_MOVEMENT_KEYS: Record<string, MovementDirection> = {
   KeyW: MovementDirection.UP,
