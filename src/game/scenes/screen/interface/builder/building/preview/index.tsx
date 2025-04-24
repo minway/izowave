@@ -47,9 +47,16 @@ export const Preview: React.FC<Props> = ({ number, variant }) => {
       && world.builder.isBuildingAllowByTutorial(variant)
     );
     const currentIsUsable = (
-      world.player.resources >= BUILDINGS[variant].Cost
+      world.player.getAssetAmount(BUILDINGS[variant].Asset) >= BUILDINGS[variant].Cost
       && !world.builder.isBuildingLimitReached(variant)
     );
+    console.log('Building ', variant);  
+    console.log('  currentIsUsable', currentIsUsable);
+    console.log('  Asset', world.player.getAssetAmount(BUILDINGS[variant].Asset));
+    console.log('  Cost', BUILDINGS[variant].Cost);
+    
+
+
 
     setActive(currentIsActive);
     setAllow(currentIsAllow);
@@ -72,7 +79,7 @@ export const Preview: React.FC<Props> = ({ number, variant }) => {
         </Frame>
       </Image>
       <Info>
-        <Cost type="RESOURCES" value={BUILDINGS[variant].Cost} check={isAllow} />
+        <Cost type={BUILDINGS[variant].Asset} value={BUILDINGS[variant].Cost} check={isAllow} />
       </Info>
     </Container>
   );

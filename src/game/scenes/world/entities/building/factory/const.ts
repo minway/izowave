@@ -16,17 +16,18 @@ import { BuildingLumberMill } from '~scene/world/entities/building/variants/lumb
 import { BuildingQuarry } from '~scene/world/entities/building/variants/quarry';
 
 export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
-  [BuildingVariant.WALL]: BuildingWall,
-  [BuildingVariant.TOWER_FROZEN]: BuildingTowerFrozen,
+  [BuildingVariant.CITYCENTER]: BuildingCityCenter,
+  [BuildingVariant.FARM]: BuildingFarm,
+  [BuildingVariant.LUMBERMILL]: BuildingLumberMill,
+  [BuildingVariant.QUARRY]: BuildingQuarry,
   [BuildingVariant.TOWER_FIRE]: BuildingTowerFire,
+  [BuildingVariant.WALL]: BuildingWall,
+
+  [BuildingVariant.TOWER_FROZEN]: BuildingTowerFrozen,  
   [BuildingVariant.TOWER_LAZER]: BuildingTowerLazer,
   [BuildingVariant.TOWER_ELECTRO]: BuildingTowerElectro,
   [BuildingVariant.GENERATOR]: BuildingGenerator,
   [BuildingVariant.AMMUNITION]: BuildingAmmunition,
   [BuildingVariant.BOOSTER]: BuildingBooster,
-  [BuildingVariant.RADAR]: BuildingRadar,
-  [BuildingVariant.CITYCENTER]: BuildingCityCenter,
-  [BuildingVariant.FARM]: BuildingFarm,
-  [BuildingVariant.QUARRY]: BuildingQuarry,
-  [BuildingVariant.LUMBERMILL]: BuildingLumberMill,
+  [BuildingVariant.RADAR]: BuildingRadar,   
 };

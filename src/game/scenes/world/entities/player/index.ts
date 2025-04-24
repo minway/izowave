@@ -49,6 +49,7 @@ import { WorldMode, WorldEvent } from '~scene/world/types';
 import { WaveEvent } from '~scene/world/wave/types';
 import { Nation } from '~scene/world/nation';
 import { IBuilder } from '~scene/world/builder/types';
+import { AssetType } from '~scene/world/level/types';
 
 Assets.RegisterAudio(PlayerAudio);
 Assets.RegisterSprites(PlayerTexture.PLAYER, PLAYER_TILE_SIZE);
@@ -105,7 +106,7 @@ export class Player extends Sprite implements IPlayer {
 
   private set aether(v) { this._aether = v; }
 
-  private _silver: number = 0;
+  private _silver: number = DIFFICULTY.PLAYER_START_SILVER;
 
   public get silver() { return this._silver; }
 
@@ -117,7 +118,7 @@ export class Player extends Sprite implements IPlayer {
 
   private set research(v) { this._research = v; }
 
-  private _lumber: number = 0;
+  private _lumber: number = DIFFICULTY.PLAYER_START_LUMBER;
 
   public get lumber() { return this._lumber; }
 
@@ -441,6 +442,58 @@ export class Player extends Sprite implements IPlayer {
       && this.scene.builder.getBuildingsByVariant(BuildingVariant.GENERATOR).length === 0
     ) {
       Tutorial.Start(TutorialStep.RESOURCES);
+    }
+  }
+
+  public getAssetAmount(type: AssetType) {
+    switch (type) {
+    case AssetType.AETHER: {
+      return this.aether;
+    }
+    case AssetType.SILVER: {
+      return this.silver;
+    }
+    case AssetType.RESEARCH: {
+      return this.research;
+    }
+    case AssetType.LUMBER: {
+      return this.lumber;
+    }
+    case AssetType.STONE: {
+      return this.stone;
+    }
+    default: {
+      return 0;
+    }
+    }
+  }
+
+  public takeAssetAmount(type: AssetType, amount: number): void {
+    
+    switch (type) {
+    case AssetType.AETHER: {
+      this.takeAether(amount);
+      break;
+    }
+    case AssetType.SILVER: {
+      this.takeSilver(amount);
+      break;
+    }
+    case AssetType.RESEARCH: {
+      this.takeResearch(amount);
+      break;
+    }
+    case AssetType.LUMBER: {
+      this.takeLumber(amount);
+      break;
+    }
+    case AssetType.STONE: {
+      this.takeStone(amount);
+      break;
+    }
+    default: {
+      break;
+    }
     }
   }
 

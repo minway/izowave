@@ -221,10 +221,10 @@ export enum BuildingOutlineState {
 }
 
 export enum BuildingCategory {
-  DEFENSE = 'DEFENSE',
-  ATTACK = 'ATTACK',
-  RESOURCES = 'RESOURCES',
   OTHER = 'OTHER',
+  RESOURCES = 'RESOURCES',
+  ATTACK = 'ATTACK',
+  DEFENSE = 'DEFENSE',
 }
 
 export type BuildingGrowthValue = {

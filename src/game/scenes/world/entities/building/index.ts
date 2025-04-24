@@ -31,7 +31,7 @@ import type { ILive } from '../addons/live/types';
 import type { LangPhrase } from '~lib/lang/types';
 import type { ITile } from '~scene/world/level/tile-matrix/types';
 import type { PositionAtMatrix, PositionAtWorld } from '~scene/world/level/types';
-import { ResourceType } from '~scene/world/level/types';
+import { ResourceType, AssetType } from '~scene/world/level/types';
 import type { IWorld } from '~scene/world/types';
 import { Assets } from '~lib/assets';
 import { CONTROL_KEY } from '~lib/controls/const';
@@ -70,6 +70,10 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
   static ResourceRequired: ResourceType = ResourceType.NONE;
 
   static Deprecated: boolean = false;
+
+  static Asset = AssetType.LUMBER;
+
+  static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
 
   private city: City;
 

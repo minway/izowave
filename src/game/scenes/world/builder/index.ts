@@ -131,7 +131,7 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
       return;
     }
 
-    if (this.player.resources < BuildingInstance.Cost) {
+    if (this.player.getAssetAmount(BuildingInstance.Asset) < BuildingInstance.Cost) {
       this.scene.game.screen.failure('NOT_ENOUGH_RESOURCES');
 
       return;
@@ -366,7 +366,7 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
       return;
     }
 
-    if (this.player.resources < BuildingInstance.Cost) {
+    if (this.player.getAssetAmount(BuildingInstance.Asset) < BuildingInstance.Cost) {
       this.scene.game.screen.failure('NOT_ENOUGH_RESOURCES');
 
       return;
@@ -382,7 +382,8 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
       }),
     });
 
-    this.player.takeResources(BuildingInstance.Cost);
+    //this.player.takeResources(BuildingInstance.Cost);
+    this.player.takeAssetAmount(BuildingInstance.Asset, BuildingInstance.Cost);
     this.player.giveExperience(DIFFICULTY.BUILDING_BUILD_EXPERIENCE);
 
     this.scene.fx.playSound(BuildingAudio.BUILD);
@@ -437,6 +438,9 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
   }
 
   public isBuildingLimitReached(variant: BuildingVariant) {
+
+    return false;
+    /*
     const limit = this.getBuildingLimit(variant);
 
     if (limit) {
@@ -444,6 +448,7 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
     }
 
     return false;
+    */
   }
 
   private createBuildPreview() {

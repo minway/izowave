@@ -17,7 +17,7 @@ export class BuildingFarm extends Building {
 
   static Texture = BuildingTexture.FARM;
 
-  static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
+  static Cost = DIFFICULTY.BUILDING_FARM_COST;
 
   static Limit = true;
 

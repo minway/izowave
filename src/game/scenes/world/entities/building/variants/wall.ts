@@ -1,3 +1,4 @@
+import { AssetType } from '~scene/world/level/types';
 import { Building } from '..';
 import { DIFFICULTY } from '../../../../../../const/difficulty';
 import {
@@ -12,6 +13,8 @@ export class BuildingWall extends Building {
 
   static Texture = BuildingTexture.WALL;
 
+  static Asset = AssetType.STONE;
+  
   static Cost = DIFFICULTY.BUILDING_WALL_COST;
 
   static AllowByWave = DIFFICULTY.BUILDING_WALL_ALLOW_BY_WAVE;

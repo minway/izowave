@@ -11,12 +11,15 @@ import type { IWorld } from '~scene/world/types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 import { ShotBallFire } from '~scene/world/entities/shot/ball/variants/fire';
+import { AssetType } from '~scene/world/level/types';
 
 export class BuildingTowerFire extends BuildingTower {
   static Category = BuildingCategory.ATTACK;
 
   static Texture = BuildingTexture.TOWER_FIRE;
 
+  static Asset = AssetType.STONE;
+  
   static Cost = DIFFICULTY.BUILDING_TOWER_FIRE_COST;
 
   static Radius = DIFFICULTY.BUILDING_TOWER_FIRE_RADIUS;

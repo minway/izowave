@@ -12,7 +12,7 @@ import { PlayerEvent } from '~scene/world/entities/player/types';
 import * as styles from './styles';
 
 type Props = {
-  type: 'RESOURCES' | 'EXPERIENCE' | 'RESEARCH'
+  type: 'RESOURCES' | 'EXPERIENCE' | 'AETHER' |'RESEARCH' | 'SILVER' | 'LUMBER' | 'STONE' 
   check?: boolean
   value: number | string
 };
@@ -23,7 +23,7 @@ export const Cost: React.FC<Props> = ({ type, value, check = true }) => {
   const refValue = useRef(value);
 
   const [haveAmount, setHaveAmount] = useState(() => {
-    const field = type.toLowerCase() as 'resources' | 'experience' | 'research';
+    const field = type.toLowerCase() as 'resources' | 'experience' | 'research' | 'silver' | 'lumber' | 'stone';
 
     return world.player[field];
   });

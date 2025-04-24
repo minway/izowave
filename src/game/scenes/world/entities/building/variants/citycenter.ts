@@ -15,13 +15,16 @@ import { BuildingIcon, BuildingParam } from '../types';
 import { LEVEL_MAP_PERSPECTIVE } from '~scene/world/level/const';
 import { City } from '~scene/world/nation/city';
 import { IPlayer } from '~scene/world/entities/player/types';
+import { AssetType } from '~scene/world/level/types';
 
 export class BuildingCityCenter extends BuildingTower {
   static Category = BuildingCategory.OTHER;
 
   static Texture = BuildingTexture.CITYCENTER;
 
-  static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
+  static Asset = AssetType.SILVER;
+
+  static Cost = DIFFICULTY.BUILDING_CITYCENTER_COST;
 
   static Radius = DIFFICULTY.BUILDING_CITYCENTER_IMPACT_RADIUS;
 

@@ -16,7 +16,7 @@ export class BuildingLumberMill extends Building {
 
   static Texture = BuildingTexture.LUMBERMILL;
 
-  static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
+  static Cost = DIFFICULTY.BUILDING_LUMBERMILL_COST;
 
   static Limit = true;
 

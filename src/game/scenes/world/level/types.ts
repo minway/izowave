@@ -107,6 +107,16 @@ export enum ResourceType {
   // later: iron, water, etc.
 }
 
+export enum AssetType {
+  AETHER = 'AETHER',
+  SILVER = 'SILVER',
+  RESEARCH = 'RESEARCH',
+  LUMBER = 'LUMBER',
+  STONE = 'STONE',
+  RESOURCES = 'RESOURCES',
+  EXPERIENCE = 'EXPERIENCE',
+}
+
 export enum SpawnTarget {
   ENEMY = 'ENEMY',
   PLAYER = 'PLAYER',

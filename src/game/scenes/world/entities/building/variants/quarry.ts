@@ -16,7 +16,7 @@ export class BuildingQuarry extends Building {
 
   static Texture = BuildingTexture.QUARRY;
 
-  static Cost = DIFFICULTY.BUILDING_GENERATOR_COST;
+  static Cost = DIFFICULTY.BUILDING_QUARRY_COST;
 
   static Limit = true;
 

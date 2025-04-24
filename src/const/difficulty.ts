@@ -1,9 +1,13 @@
+import { BUILDINGS } from "~scene/world/entities/building/factory/const";
+
 // TODO: Split and move into every feature
 export const DIFFICULTY = {
   /**
    * Player
    */
 
+  PLAYER_START_SILVER: 100, // Silver on game start
+  PLAYER_START_LUMBER: 200, // Lumber on game start
   PLAYER_START_RESOURCES: 80, // Resources on game start
   PLAYER_HEALTH: 100, // Health
   PLAYER_HEALTH_GROWTH: 0.4, // Growth health by upgrade (Quadratic)
@@ -124,6 +128,31 @@ export const DIFFICULTY = {
   BUILDING_TILE_COST_MULTIPLIER: 0.0013, // Tile cost multiplier by max health
 
   /**
+   * Building: City center
+   * */
+
+  BUILDING_CITYCENTER_IMPACT_RADIUS: 200, // City center impact radius (allow to build) 
+  BUILDING_CITYCENTER_COST: 100, // Building cost
+
+  /**
+   * Building: Farm
+   */
+
+  BUILDING_FARM_COST: 20, // Building cost
+
+
+  /* 
+    * Building: Lumber mill
+    */
+
+  BUILDING_LUMBERMILL_COST: 80, // Building cost
+
+  /**
+   * Building: Quarry
+   */
+  BUILDING_QUARRY_COST: 80, // Building cost
+
+  /**
    * Building: Wall
    */
 
@@ -144,7 +173,7 @@ export const DIFFICULTY = {
    * Building: Tower: Fire
    */
 
-  BUILDING_TOWER_FIRE_COST: 30, // Building cost
+  BUILDING_TOWER_FIRE_COST: 100, // Building cost
   BUILDING_TOWER_FIRE_HEALTH: 300, // Health
   BUILDING_TOWER_FIRE_RADIUS: 150, // Attack radius
   BUILDING_TOWER_FIRE_RADIUS_GROWTH: 0.15, // Radius growth by level (Linear)
@@ -152,7 +181,8 @@ export const DIFFICULTY = {
   BUILDING_TOWER_FIRE_DELAY_GROWTH: -0.11, // Pause growth by level (Linear)
   BUILDING_TOWER_FIRE_DAMAGE: 45, // Attack damage
   BUILDING_TOWER_FIRE_SHOT_SPEED: 300, // Shot speed
-  BUILDING_CITYCENTER_IMPACT_RADIUS: 200, // City center impact radius (allow to build) 
+
+
 
   /**
    * Building: Tower: Frozen

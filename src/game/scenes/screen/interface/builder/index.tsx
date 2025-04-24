@@ -30,6 +30,7 @@ export const Builder: React.FC = () => {
     label: LangPhrase
   }>>(null);
 
+  // Filter out deprecated buildings
   const categories = useMemo(() => {
     const buildings = Utils.MapObject(BUILDINGS, (variant, building, index) => ({
       variant,
@@ -45,20 +46,7 @@ export const Builder: React.FC = () => {
       buildings: filteredBuildings.filter((building) => building.category === type),
     }));
   }, []);
-/*
-  const categories = useMemo(() => {
-    const buildings = Utils.MapObject(BUILDINGS, (variant, building, index) => ({
-      variant,
-      category: building.Category,
-      number: index + 1,
-    }));
 
-    return Object.values(BuildingCategory).map((type) => ({
-      type,
-      buildings: buildings.filter((building) => building.category === type),
-    }));
-  }, []);
-*/
   const showHint = (step: TutorialStep) => {
     switch (step) {
     case TutorialStep.BUILD_GENERATOR: {

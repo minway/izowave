@@ -1,7 +1,7 @@
 import type { ILive } from '../addons/live/types';
 import type { IEnemyTarget } from '../npc/enemy/types';
 import type { ISprite } from '../types';
-import type { PositionAtMatrix } from '~scene/world/level/types';
+import type { AssetType, PositionAtMatrix } from '~scene/world/level/types';
 import type { Nation } from '~scene/world/nation';
 import type { IBuilder } from '~scene/world/builder/types';
 
@@ -96,6 +96,16 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   setBuilder(builder: IBuilder): void
   
   getBuilder(): IBuilder
+
+  /** 
+   * Get player asset amount.
+   */
+  getAssetAmount(type: AssetType): number
+
+  /**
+   * Take player asset amount.
+   */
+  takeAssetAmount(type: AssetType, amount: number): void
 
   /**
    * Upgrade player skill.
