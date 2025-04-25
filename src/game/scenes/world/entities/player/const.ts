@@ -65,7 +65,7 @@ export const PLAYER_TECHNOLOGY: Record<PlayerTechnology, PlayerTechnologyInfo> =
     research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
     group: PlayerTechnologyGroup.BUILDING,
   },
-  [PlayerTechnology.FIRE_TOWER]: {
+  [PlayerTechnology.TOWER_FIRE]: {
     research: DIFFICULTY.TECHNOLOGY_UPGRADE_COST,
     group: PlayerTechnologyGroup.BUILDING,
   },

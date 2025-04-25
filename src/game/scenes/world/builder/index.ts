@@ -383,7 +383,7 @@ export class Builder extends Phaser.Events.EventEmitter implements IBuilder {
     });
 
     //this.player.takeResources(BuildingInstance.Cost);
-    this.player.takeAssetAmount(BuildingInstance.Asset, BuildingInstance.Cost);
+    this.player.takeAsset(BuildingInstance.Asset, BuildingInstance.Cost);
     this.player.giveExperience(DIFFICULTY.BUILDING_BUILD_EXPERIENCE);
 
     this.scene.fx.playSound(BuildingAudio.BUILD);

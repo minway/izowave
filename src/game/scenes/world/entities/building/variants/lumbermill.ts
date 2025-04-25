@@ -8,6 +8,7 @@ import type { BuildingVariantData } from '../types';
 import type { IWorld } from '~scene/world/types';
 import { ResourceType } from '~scene/world/level/types';
 import { BuildingIcon, BuildingParam } from '../types';
+import { PlayerTechnology } from '~scene/world/entities/player/types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 
@@ -20,9 +21,11 @@ export class BuildingLumberMill extends Building {
 
   static Limit = true;
 
-  static MaxLevel = 4;
+  static MaxLevel = 10;
 
   static ResourceRequired = ResourceType.FOREST;
+
+  static UpgradeByTechnology = PlayerTechnology.LUMBERMILL;
 
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {

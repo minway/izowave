@@ -33,7 +33,8 @@ export const Action: React.FC<Props> = ({ control }) => {
       </Main>
       {!!control.cost && (
         <Addon>
-          <Cost type="RESOURCES" value={control.cost} />
+          <Cost type={control.asset} value={control.cost} />
+
         </Addon>
       )}
     </Container>

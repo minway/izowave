@@ -11,6 +11,7 @@ import { BuildingIcon, BuildingParam } from '../types';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 import { TerrainType } from '~scene/world/level/types';
+import { PlayerTechnology } from '~scene/world/entities/player/types';
 
 export class BuildingFarm extends Building {
   static Category = BuildingCategory.RESOURCES;
@@ -21,7 +22,9 @@ export class BuildingFarm extends Building {
 
   static Limit = true;
 
-  static MaxLevel = 4;
+  static MaxLevel = 10;
+
+  static UpgradeByTechnology = PlayerTechnology.FARM;
 
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {

@@ -32,9 +32,9 @@ export const EN = {
   BUILDING_NAME_CITYCENTER: 'City center',
   BUILDING_DESCRIPTION_CITYCENTER: 'The center of a city',  
   BUILDING_NAME_FARM: 'Farm',
-  BUILDING_DESCRIPTION_FARM: 'Produce food',  
+  BUILDING_DESCRIPTION_FARM: 'Produce food. Produce more on plain ground',  
   BUILDING_NAME_QUARRY: 'Quarry',
-  BUILDING_DESCRIPTION_QUARRY: 'Produce stone. Must be built on a stone resource.',
+  BUILDING_DESCRIPTION_QUARRY: 'Produce stone. Must build on a stone resource.',
   BUILDING_NAME_LUMBERMILL: 'Lumber Mill',
   BUILDING_DESCRIPTION_LUMBERMILL: 'Produce lumber. Must build in forest.',
   BUILDING_CATEGORY_DEFENSE: 'Defense',
@@ -57,6 +57,7 @@ export const EN = {
   BUILDING_REPAIR: 'Repair',
   BUILDING_WILL_BE_AVAILABLE: 'Will be available on %1 wave',
   BUILDING_LIMIT_REACHED: 'You have maximum %1s',
+  BUILDING_UPGRADE_TECHNOLOGY_REQUIRED: 'You need to advance technology to upgrade this building',
 
   /**
    * Checks amounts
@@ -117,7 +118,7 @@ export const EN = {
   TECHNOLOGY_LABEL_FARM: 'Farm',
   TECHNOLOGY_LABEL_LUMBERMILL: 'Lumber mill',
   TECHNOLOGY_LABEL_QUARRY: 'Quarry',
-  TECHNOLOGY_LABEL_FIRE_TOWER: 'Fire tower',
+  TECHNOLOGY_LABEL_TOWER_FIRE: 'Fire tower',
   TECHNOLOGY_LABEL_WALL: 'Wall',
   TECHNOLOGY_LABEL_COMBAT: 'Combat',
 
@@ -186,7 +187,7 @@ export const EN = {
   TUTORIAL_CLICK_TO_BUY_AMMO: 'Click to buy ammo',
   TUTORIAL_HOVER_TO_BUY_AMMO: 'Hover and press [F]\nto buy ammo',
   TUTORIAL_BUILD_CITYCENTER: 'Build city center\nto occupy land and get resources',
-  TUTORIAL_BUILD_FARM: 'Build farm\nto produce food',
+  TUTORIAL_BUILD_FARM: 'Build farm\nto produce food.\n Produce more on plain ground',
 
   /**
    * Menu navigation

@@ -14,7 +14,7 @@ import { ShotBallFire } from '~scene/world/entities/shot/ball/variants/fire';
 import { BuildingIcon, BuildingParam } from '../types';
 import { LEVEL_MAP_PERSPECTIVE } from '~scene/world/level/const';
 import { City } from '~scene/world/nation/city';
-import { IPlayer } from '~scene/world/entities/player/types';
+import { IPlayer, PlayerTechnology } from '~scene/world/entities/player/types';
 import { AssetType } from '~scene/world/level/types';
 
 export class BuildingCityCenter extends BuildingTower {
@@ -34,6 +34,8 @@ export class BuildingCityCenter extends BuildingTower {
 
   static CityRequired = false;
 
+  static UpgradeByTechnology = PlayerTechnology.CITYCENTER;
+  
   private impactArea: Nullable<Phaser.GameObjects.Ellipse> = null;
 
   private nameText: Nullable<Phaser.GameObjects.Text> = null;

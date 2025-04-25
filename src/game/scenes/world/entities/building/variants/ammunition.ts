@@ -24,6 +24,7 @@ import { progressionQuadratic } from '~lib/progression';
 import { Tutorial } from '~lib/tutorial';
 import { TutorialStep } from '~lib/tutorial/types';
 import { WorldMode } from '~scene/world/types';
+import { AssetType } from '~scene/world/level/types';
 
 export class BuildingAmmunition extends Building implements IBuildingAmmunition {
 
@@ -98,6 +99,7 @@ export class BuildingAmmunition extends Building implements IBuildingAmmunition 
     const actions: BuildingControl[] = [{
       label: 'BUILDING_BUY_AMMO',
       cost: this.getAmmoCost(),
+      asset: AssetType.SILVER,
       disabled: (this.ammo >= this.maxAmmo),
       hotkey: 'F',
       onClick: () => {

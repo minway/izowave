@@ -46,7 +46,7 @@ import { LEVEL_MAP_PERSPECTIVE } from '~scene/world/level/const';
 import { TileType } from '~scene/world/level/types';
 import { WorldMode, WorldEvent } from '~scene/world/types';
 import { City } from '~scene/world/nation/city';
-import { IPlayer } from '../player/types';
+import { IPlayer, PlayerTechnology } from '../player/types';
 
 Assets.RegisterAudio(BuildingAudio);
 Assets.RegisterImages(BuildingIcon);
@@ -284,7 +284,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
       actions.push({
         label: 'BUILDING_UPGRADE',
         cost: this.getUpgradeCost(),
-        disabled: this.getUpgradeAllowedByWave() > this.scene.wave.number,
+        asset: this.getMeta().Asset,
+        disabled: false, //this.getUpgradeAllowedByWave() > this.scene.wave.number,
         hotkey: 'E',
         onClick: () => {
           this.upgrade();
@@ -295,6 +296,7 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
     actions.push({
       label: 'BUILDING_REPAIR',
       cost: this.getRepairCost(),
+      asset: this.getMeta().Asset,
       disabled: this.live.isMaxHealth(),
       hotkey: 'R',
       onClick: () => {
@@ -353,7 +355,17 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
   }
 
   private getUpgradeAllowedByWave() {
-    return (this.getMeta().AllowByWave ?? 1) + this.upgradeLevel;
+    return true;
+    //return (this.getMeta().AllowByWave ?? 1) + this.upgradeLevel;
+  }
+
+  private getUpgradeAllowedByTechnology() {
+    const requiredTechnology = this.getMeta().UpgradeByTechnology;
+    if (requiredTechnology) {
+      return this.scene.player.getTechnologyLevel(requiredTechnology) > this.upgradeLevel;
+    }
+    // If no technology is required for upgrade, it's allowed (or handle as needed)
+    return true;    
   }
 
   private upgrade() {
@@ -361,19 +373,22 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
       return;
     }
 
-    const waveNumber = this.getUpgradeAllowedByWave();
-
-    if (waveNumber > this.scene.wave.number) {
-      this.scene.game.screen.failure('BUILDING_WILL_BE_AVAILABLE', [waveNumber]);
-
+    if (!this.getUpgradeAllowedByTechnology()) {
+      this.scene.game.screen.failure('BUILDING_UPGRADE_TECHNOLOGY_REQUIRED');
       return;
     }
 
+    //const waveNumber = this.getUpgradeAllowedByWave();
+    //if (waveNumber > this.scene.wave.number) {
+      //this.scene.game.screen.failure('BUILDING_WILL_BE_AVAILABLE', [waveNumber]);
+      //return;
+    //}
+
     const cost = this.getUpgradeCost();
 
-    if (this.scene.player.resources < cost) {
+    if (this.scene.player.getAssetAmount(this.getMeta().Asset) < cost) {
+    //if (this.scene.player.resources < cost) {
       this.scene.game.screen.failure('NOT_ENOUGH_RESOURCES');
-
       return;
     }
 
@@ -389,7 +404,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
     this.scene.getEntitiesGroup(EntityType.BUILDING)
       .emit(BuildingEvent.UPGRADE, this);
 
-    this.scene.player.takeResources(cost);
+    //this.scene.player.takeResources(cost);
+    this.scene.player.takeAsset(this.getMeta().Asset, cost);
 
     const experience = progressionLinear({
       defaultValue: DIFFICULTY.BUILDING_UPGRADE_EXPERIENCE,
@@ -420,7 +436,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
 
     const cost = this.getRepairCost();
 
-    if (this.scene.player.resources < cost) {
+    if (this.scene.player.getAssetAmount(this.getMeta().Asset) < cost) {
+    //if (this.scene.player.resources < cost) {
       if (!auto) {
         this.scene.game.screen.failure('NOT_ENOUGH_RESOURCES');
       }
@@ -432,7 +449,8 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
 
     this.updateTileCost();
 
-    this.scene.player.takeResources(cost);
+    //this.scene.player.takeResources(cost);
+    this.scene.player.takeAsset(this.getMeta().Asset, cost);
 
     this.scene.fx.playSound(BuildingAudio.REPAIR);
   }
@@ -625,6 +643,7 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
     this.alertTween = null;
   }
 
+  // Display upgrade icon (an upperward arrow) for a short time
   private addUpgradeIcon() {
     if (this.upgradeIcon) {
       this.removeUpgradeIcon();

@@ -5,7 +5,7 @@ import type { IShotInitiator } from '../shot/types';
 import type Phaser from 'phaser';
 import type { LangPhrase } from '~lib/lang/types';
 import type { IParticlesParent } from '~scene/world/fx-manager/particles/types';
-import type { PositionAtMatrix, PositionAtWorld } from '~scene/world/level/types';
+import type { AssetType, PositionAtMatrix, PositionAtWorld } from '~scene/world/level/types';
 import type { IWorld } from '~scene/world/types';
 import { IPlayer } from '../player/types';
 import { City } from '~scene/world/nation/city';
@@ -242,6 +242,7 @@ export type BuildingParam = {
 export type BuildingControl = {
   label: LangPhrase
   cost?: number
+  asset: AssetType
   disabled?: boolean
   hotkey: string
   onClick: () => void

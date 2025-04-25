@@ -161,7 +161,7 @@ export class Player extends Sprite implements IPlayer {
     [PlayerTechnology.FARM]: 1,
     [PlayerTechnology.LUMBERMILL]: 1,
     [PlayerTechnology.QUARRY]: 1,
-    [PlayerTechnology.FIRE_TOWER]: 1,
+    [PlayerTechnology.TOWER_FIRE]: 1,
     [PlayerTechnology.WALL]: 1,
     [PlayerTechnology.COMBAT]: 1,
   };
@@ -468,7 +468,7 @@ export class Player extends Sprite implements IPlayer {
     }
   }
 
-  public takeAssetAmount(type: AssetType, amount: number): void {
+  public takeAsset(type: AssetType, amount: number): void {
     
     switch (type) {
     case AssetType.AETHER: {
@@ -791,6 +791,10 @@ export class Player extends Sprite implements IPlayer {
 
   private setTechnologyAdvance(type: PlayerTechnology, level: number) {
     this.techLevel[type] = level;
+  }
+
+  public getTechnologyLevel(type: PlayerTechnology): number {
+    return this.techLevel[type];
   }
 
   protected onDamage(amount: number) {

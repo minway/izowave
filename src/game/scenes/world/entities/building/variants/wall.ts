@@ -7,6 +7,7 @@ import {
 
 import type { BuildingVariantData } from '../types';
 import type { IWorld } from '~scene/world/types';
+import { PlayerTechnology } from '~scene/world/entities/player/types';
 
 export class BuildingWall extends Building {
   static Category = BuildingCategory.DEFENSE;
@@ -14,14 +15,16 @@ export class BuildingWall extends Building {
   static Texture = BuildingTexture.WALL;
 
   static Asset = AssetType.STONE;
-  
+
   static Cost = DIFFICULTY.BUILDING_WALL_COST;
 
   static AllowByWave = DIFFICULTY.BUILDING_WALL_ALLOW_BY_WAVE;
 
-  static MaxLevel = 3;
+  static MaxLevel = 10;
 
   static CityRequired = true;
+
+  static UpgradeByTechnology = PlayerTechnology.WALL;
 
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {

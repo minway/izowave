@@ -105,7 +105,7 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   /**
    * Take player asset amount.
    */
-  takeAssetAmount(type: AssetType, amount: number): void
+  takeAsset(type: AssetType, amount: number): void
 
   /**
    * Upgrade player skill.
@@ -126,6 +126,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
    * Get research amount need to advance.
    */
   getResearchToAdvance(type: PlayerTechnology): number
+
+  /**
+   * Get technology level.
+   */
+  getTechnologyLevel(type: PlayerTechnology): number
 
   /**
    * Inremeting number of killed enemies.
@@ -313,7 +318,7 @@ export enum PlayerTechnology {
   FARM = 'FARM',
   LUMBERMILL = 'LUMBERMILL',
   QUARRY = 'QUARRY',
-  FIRE_TOWER = 'FIRE_TOWER',
+  TOWER_FIRE = 'TOWER_FIRE',
   WALL = 'WALL',
   COMBAT = 'COMBAT',
 }
@@ -323,7 +328,7 @@ export enum PlayerTechnologyIcon {
   FARM = 'player/technologies/farm',
   LUMBERMILL = 'player/technologies/lumbermill',
   QUARRY = 'player/technologies/quarry',
-  FIRE_TOWER = 'player/technologies/fire_tower',
+  TOWER_FIRE = 'player/technologies/tower_fire',
   WALL = 'player/technologies/wall',
   COMBAT = 'player/technologies/combat',
 } 
