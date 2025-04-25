@@ -368,7 +368,7 @@ export abstract class Building extends Phaser.GameObjects.Image implements IBuil
     return true;    
   }
 
-  private upgrade() {
+  protected upgrade() {
     if (!this.isUpgradeAllowed()) {
       return;
     }

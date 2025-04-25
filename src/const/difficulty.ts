@@ -6,8 +6,8 @@ export const DIFFICULTY = {
    * Player
    */
 
-  PLAYER_START_SILVER: 100, // Silver on game start
-  PLAYER_START_LUMBER: 200, // Lumber on game start
+  PLAYER_START_SILVER: 1000, // Silver on game start
+  PLAYER_START_LUMBER: 2000, // Lumber on game start
   PLAYER_START_RESOURCES: 80, // Resources on game start
   PLAYER_HEALTH: 100, // Health
   PLAYER_HEALTH_GROWTH: 0.4, // Growth health by upgrade (Quadratic)

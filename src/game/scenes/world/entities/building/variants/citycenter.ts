@@ -16,6 +16,7 @@ import { LEVEL_MAP_PERSPECTIVE } from '~scene/world/level/const';
 import { City } from '~scene/world/nation/city';
 import { IPlayer, PlayerTechnology } from '~scene/world/entities/player/types';
 import { AssetType } from '~scene/world/level/types';
+import { progressionLinear } from '~lib/progression';
 
 export class BuildingCityCenter extends BuildingTower {
   static Category = BuildingCategory.OTHER;
@@ -35,7 +36,7 @@ export class BuildingCityCenter extends BuildingTower {
   static CityRequired = false;
 
   static UpgradeByTechnology = PlayerTechnology.CITYCENTER;
-  
+
   private impactArea: Nullable<Phaser.GameObjects.Ellipse> = null;
 
   private nameText: Nullable<Phaser.GameObjects.Text> = null;
@@ -75,10 +76,16 @@ export class BuildingCityCenter extends BuildingTower {
     this.addNameText();
   }
 
+  protected upgrade() {
+    super.upgrade();
+
+    this.updateImpactArea();
+  }
+
   public getImpactRadius() {
     let radius = BuildingCityCenter.Radius;
-
-    return radius;
+    
+    return radius + 50 * (this.upgradeLevel - 1);
   }
 
   private addImpactArea() {

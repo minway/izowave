@@ -82,13 +82,14 @@ export class BuildingFarm extends Building {
 
   public getFoodProduction(): number {
     const terrain = this.scene.level.terrainMap[this.positionAtMatrix.y][this.positionAtMatrix.x]; 
+    const production = 8 + 2 * (this.upgradeLevel - 1);
 
     if (terrain === TerrainType.PLAIN) {
-      return 8;
+      return production;
     } else if (terrain === TerrainType.HILL) {
-      return 4;
+      return production / 2;
     } else if (terrain === TerrainType.MOUNTAIN) {
-      return 2;
+      return production / 4;
     }
 
     return 0;

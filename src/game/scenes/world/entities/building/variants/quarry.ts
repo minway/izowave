@@ -73,7 +73,7 @@ export class BuildingQuarry extends Building {
   }
 
   public getProduction(): number {
-    return 1;
+    return 2 + (this.upgradeLevel - 1);
   }
 
   private generateResource() {
