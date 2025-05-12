@@ -6,8 +6,8 @@ import { LevelPlanet } from './types';
 import type { LevelBiomes } from './types';
 import type { WorldLayerParams } from 'gen-biome';
 
-// map size in tiles
-export const LEVEL_MAP_SIZE = 150;
+// max map size in tiles - both width and height should not exceed this value 
+export const LEVEL_MAP_SIZE = 200;
 
 export const LEVEL_MAP_TILE_SIZE = {
   width: 42,
