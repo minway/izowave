@@ -171,6 +171,7 @@ export enum WorldEvent {
   SHOW_HINT = 'show_hint',
   HIDE_HINT = 'hide_hint',
   TOGGLE_MODE = 'toggle_mode',
+  PLAYER_COORDINATES = 'player_coordinates',
 }
 
 export enum WorldMode {

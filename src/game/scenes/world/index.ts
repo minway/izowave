@@ -173,6 +173,8 @@ export class World extends Scene implements IWorld {
 
       this.builder.update();
       this.wave.update();
+      const position = this.player.positionAtMatrix;
+      this.events.emit(WorldEvent.PLAYER_COORDINATES, position.x, position.y);
     } catch (error) {
       console.warn('Failed to update world', error as TypeError);
     }
@@ -521,3 +523,4 @@ export class World extends Scene implements IWorld {
     });
   }
 }
+

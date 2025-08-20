@@ -1,7 +1,8 @@
 import { useGame, useScene, useSceneUpdate } from 'phaser-react-ui';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { GameScene } from '../../../../types';
+import { WorldEvent } from '~scene/world/types';
 
 import type { IGame } from '../../../../types';
 import type { IWorld } from '~scene/world/types';
@@ -26,9 +27,21 @@ export const Debug: React.FC = () => {
     }
   }, []);
 
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+
+  useEffect(() => {
+    world.events.on(WorldEvent.PLAYER_COORDINATES, (x: number, y: number) => {
+      setX(Math.round(x));
+      setY(Math.round(y));
+    });
+  }, [world]);
+
   return (
     <Value>
+      X: {x}, Y: {y} <br />
       {frames} FPS
+      
       {Boolean(memory) && (
         <>
           <br />
