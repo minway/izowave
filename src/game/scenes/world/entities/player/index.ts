@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { DIFFICULTY_RESOURCES } from '../../../../../const/difficulty';
 
 import { Sprite } from '..';
 import { DIFFICULTY } from '../../../../../const/difficulty';
@@ -88,10 +89,10 @@ export class Player extends Sprite implements IPlayer {
 
   private set experience(v) { this._experience = v; }
 
-  private _resources: number = DIFFICULTY.PLAYER_START_RESOURCES;
-
-  public get resources() { return this._resources; }
-
+  
+    private _resources: number = DIFFICULTY_RESOURCES[this.scene.game.difficulty].PLAYER_START_RESOURCES;
+  
+    public get resources() { return this._resources; }
   private set resources(v) { this._resources = v; }
 
   private _score: number = 0;
@@ -106,25 +107,25 @@ export class Player extends Sprite implements IPlayer {
 
   private set aether(v) { this._aether = v; }
 
-  private _silver: number = DIFFICULTY.PLAYER_START_SILVER;
-
-  public get silver() { return this._silver; }
-
+  
+    private _silver: number = DIFFICULTY_RESOURCES[this.scene.game.difficulty].PLAYER_START_SILVER;
+  
+    public get silver() { return this._silver; }
   private set silver(v) { this._silver = v; }
 
-  private _research: number = 0;
+  private _research: number = DIFFICULTY_RESOURCES[this.scene.game.difficulty].PLAYER_START_RESEARCH;
 
   public get research() { return this._research; }
 
   private set research(v) { this._research = v; }
 
-  private _lumber: number = DIFFICULTY.PLAYER_START_LUMBER;
-
-  public get lumber() { return this._lumber; }
-
+  
+    private _lumber: number = DIFFICULTY_RESOURCES[this.scene.game.difficulty].PLAYER_START_LUMBER;
+  
+    public get lumber() { return this._lumber; }
   private set lumber(v) { this._lumber = v; }
 
-  private _stone: number = 0;
+  private _stone: number = DIFFICULTY_RESOURCES[this.scene.game.difficulty].PLAYER_START_STONE;
 
   public get stone() { return this._stone; }
 
