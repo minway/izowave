@@ -296,9 +296,11 @@ export class Player extends Sprite implements IPlayer {
         this.updateSoldiersText();
       }
 
-      // if this player is the user, clear fog - radius set to 4 at the moment 
+      // if this player is the user, clear fog
       if (!this.ai) {
-        this.scene.level.clearFog(this.positionAtMatrix, 4);
+        const difficulty = this.scene.game.difficulty;
+        const fogRevealDistance = DIFFICULTY_RESOURCES[difficulty].fogRevealDistance;
+        this.scene.level.clearFog(this.positionAtMatrix, fogRevealDistance);
       }
     } catch (error) {
       console.warn('Failed to update player', error as TypeError);

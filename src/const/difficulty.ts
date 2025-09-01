@@ -15,7 +15,7 @@ export const DIFFICULTY = {
   PLAYER_SPEED: 190, // Movement speed
   PLAYER_SPEED_GROWTH: 0.0556, // Growth speed by upgrade (Linear)
   PLAYER_SPEED_EXPERIENCE_TO_UPGRADE: 80, // Experience need to upgrade speed
-  PLAYER_STAMINA: 9100, // Stamina
+  PLAYER_STAMINA: 100, // Stamina
   PLAYER_STAMINA_GROWTH: 0.2, // Growth stamina by upgrade (Quadratic)
   PLAYER_STAMINA_EXPERIENCE_TO_UPGRADE: 60, //  Experience need to upgrade stamina
   PLAYER_EXPERIENCE_TO_UPGRADE_GROWTH: 1.0, // Growth experience need to upgrade (Quadratic)
@@ -276,6 +276,7 @@ export const DIFFICULTY_RESOURCES = {
     PLAYER_START_RESOURCES: 160,
     PLAYER_START_RESEARCH: 0,
     PLAYER_START_STONE: 0,
+    fogRevealDistance: 96,
   },
   NORMAL: {
     PLAYER_START_SILVER: 1000,
@@ -283,6 +284,7 @@ export const DIFFICULTY_RESOURCES = {
     PLAYER_START_RESOURCES: 80,
     PLAYER_START_RESEARCH: 0,
     PLAYER_START_STONE: 0,
+    fogRevealDistance: 4,
   },
   HARD: {
     PLAYER_START_SILVER: 500,
@@ -290,5 +292,6 @@ export const DIFFICULTY_RESOURCES = {
     PLAYER_START_RESOURCES: 40,
     PLAYER_START_RESEARCH: 0,
     PLAYER_START_STONE: 0,
+    fogRevealDistance: 3,
   },
 };
