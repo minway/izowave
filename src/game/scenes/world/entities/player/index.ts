@@ -907,7 +907,7 @@ export class Player extends Sprite implements IPlayer {
   }
 
   private handleAIMovement() {
-    this.moveAIPlayerRandomly();
+    this.pauseAIPlayer();
     
     this.handleWindowBlur();
   }
@@ -933,13 +933,14 @@ export class Player extends Sprite implements IPlayer {
     this.movementTarget = null;
 
     // Schedule the next move after a pause
-    let pauseDuration = Phaser.Math.Between(1000, 3000); // Random pause duration between 1 and 3 seconds
-    this.scene.time.delayedCall(pauseDuration, this.moveAIPlayerRandomly, [], this);
-
-    // if no city, build one
-    if (this.getNation().getCityNum() == 0) {
-      this.scene.time.delayedCall(pauseDuration + 1000, this.aiBuildCityCenter, [this.positionAtMatrix], this);      
-    }
+    let pauseDuration = Phaser.Math.Between(5000, 9000); // Random pause duration between 5 and 9 seconds
+    this.scene.time.delayedCall(pauseDuration, () => {
+      this.moveAIPlayerRandomly();
+      // if no city, build one
+      if (this.getNation().getCityNum() == 0) {
+        this.scene.time.delayedCall(1000, this.aiBuildCityCenter, [this.positionAtMatrix], this);
+      }
+    }, [], this);
   }
 
   aiBuildCityCenter(position: PositionAtMatrix) {
