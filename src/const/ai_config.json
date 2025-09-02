@@ -1,0 +1,34 @@
+{
+  "aiPlayers": [
+    {
+      "id": "ai1",
+      "nation": {
+        "name": "AI_NATION_A"
+      },
+      "cities": [
+        {
+          "name": "AI_NATION_A_CITY_1",
+          "position": {
+            "x": 50,
+            "y": 120
+          }
+        }
+      ]
+    },
+    {
+      "id": "ai2",
+      "nation": {
+        "name": "AI_NATION_B"
+      },
+      "cities": [
+        {
+          "name": "AI_NATION_B_CITY_1",
+          "position": {
+            "x": 55,
+            "y": 133
+          }
+        }
+      ]
+    }
+  ]
+}

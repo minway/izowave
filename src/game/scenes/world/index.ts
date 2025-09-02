@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Scene } from '..';
 import { DIFFICULTY } from '../../../const/difficulty';
 import { GameScene, GameState, GameEvent } from '../../types';
+import aiConfig from '../../../const/ai_config.json';
+import { phrase } from '~lib/lang';
 
 import { Builder } from './builder';
 import { Camera } from './camera';
@@ -404,42 +406,35 @@ export class World extends Scene implements IWorld {
   }
 
   private addAIPlayer() {
-    const positionAtMatrix = (
-      this.game.usedSave?.payload.player.position
-      ?? Phaser.Utils.Array.GetRandom(
-        this.level.readSpawnPositions(SpawnTarget.PLAYER),
-      )
-    );
+    aiConfig.aiPlayers.forEach(aiPlayerData => {
+      const positionAtMatrix = (
+        this.game.usedSave?.payload.player.position
+        ?? { x: aiPlayerData.cities[0].position.x, y: aiPlayerData.cities[0].position.y, z: 0 }
+        //?? Phaser.Utils.Array.GetRandom(
+        //  this.level.readSpawnPositions(SpawnTarget.PLAYER),
+        //)
+      );
 
-    let aiPlayer = new Player(this, { positionAtMatrix, ai: true });
-    this.aiPlayers.push(aiPlayer);
+      let aiPlayer = new Player(this, { positionAtMatrix, ai: true });
+      this.aiPlayers.push(aiPlayer);
 
-    let nation = new Nation(this, this.player, 'AI-1');
-    this.nations.push(nation);
-    aiPlayer.setNation(nation);
+      const nationName = 'AI_NATION_A'; //phrase(aiPlayerData.nation.name);
+      let nation = new Nation(this, aiPlayer, nationName);
+      this.nations.push(nation);
+      aiPlayer.setNation(nation);
 
-    let builder = new Builder(this, aiPlayer);
+      let builder = new Builder(this, aiPlayer);
 
-    this.game.events.once(GameEvent.FINISH, () => {
-      builder.close();
+      this.game.events.once(GameEvent.FINISH, () => {
+        builder.close();
+      });
+
+      this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+        builder.destroy();
+      });
+
+      aiPlayer.setBuilder(builder);
     });
-
-    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-      builder.destroy();
-    });
-
-    aiPlayer.setBuilder(builder);
-
-    //if (this.game.usedSave?.payload.player) {
-    //  this.player.loadSavePayload(this.game.usedSave.payload.player);
-    //}
-
-    //this.camera.focusOn(this.player);
-
-    //this.player.live.on(LiveEvent.DEAD, () => {
-    //  this.camera.zoomOut();
-    //  this.game.finishGame();
-    //});
   }
 
   private addCrystals() {

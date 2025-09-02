@@ -287,4 +287,15 @@ export const EN = {
 
   DAYS: 'Days',
   PAUSE_RESUME: 'Click to pause/resume game',
+
+  /**
+   * AI
+   */  
+  AI_NATION_A: 'AI Nation A',
+  AI_NATION_A_CITY_1: 'Alpha City',
+  AI_NATION_A_CITY_2: 'Beta City',
+  
+  AI_NATION_B: 'AI Nation B',
+  AI_NATION_B_CITY_1: 'Gamma City',
+  AI_NATION_B_CITY_2: 'Delta City',
 };
